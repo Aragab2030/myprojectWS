@@ -1,0 +1,151 @@
+prompt --application/shared_components/data_profiles/apex_youtube_channel
+begin
+--   Manifest
+--     DATA PROFILE: APEX Youtube Channel
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.3'
+,p_default_workspace_id=>20
+,p_default_application_id=>7920
+,p_default_id_offset=>8529837867671528
+,p_default_owner=>'ORACLE'
+);
+wwv_flow_imp_shared.create_data_profile(
+ p_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'APEX Youtube Channel'
+,p_format=>'JSON'
+,p_row_selector=>'items'
+,p_use_raw_json_selectors=>false
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742094161841473597)
+,p_data_profile_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'ID'
+,p_sequence=>1
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'id'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742094392959473604)
+,p_data_profile_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'ETAG'
+,p_sequence=>2
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'etag'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742094780517473605)
+,p_data_profile_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'KIND'
+,p_sequence=>3
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'kind'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742095040324473605)
+,p_data_profile_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'TITLE'
+,p_sequence=>4
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'snippet.title'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742095294896473605)
+,p_data_profile_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'CHANNELID'
+,p_sequence=>5
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_is_hidden=>true
+,p_selector=>'snippet.channelId'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742095917326473605)
+,p_data_profile_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'DESCRIPTION'
+,p_sequence=>7
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'snippet.localized.description'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742096186159473605)
+,p_data_profile_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'URL'
+,p_sequence=>8
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'snippet.thumbnails.high.url'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742096567581473606)
+,p_data_profile_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'WIDTH'
+,p_sequence=>9
+,p_data_type=>'NUMBER'
+,p_has_time_zone=>false
+,p_selector=>'snippet.thumbnails.high.width'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742096861779473606)
+,p_data_profile_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'HEIGHT'
+,p_sequence=>10
+,p_data_type=>'NUMBER'
+,p_has_time_zone=>false
+,p_selector=>'snippet.thumbnails.high.height'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742101059988473609)
+,p_data_profile_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'PUBLISHEDAT'
+,p_sequence=>24
+,p_data_type=>'TIMESTAMP WITH TIME ZONE'
+,p_format_mask=>'YYYY"-"MM"-"DD"T"HH24":"MI:SSTZR'
+,p_has_time_zone=>true
+,p_selector=>'snippet.publishedAt'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742101373383473609)
+,p_data_profile_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'CHANNELTITLE'
+,p_sequence=>25
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'snippet.channelTitle'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742101664426473609)
+,p_data_profile_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'ITEMCOUNT'
+,p_sequence=>26
+,p_data_type=>'NUMBER'
+,p_has_time_zone=>false
+,p_selector=>'contentDetails.itemCount'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742101964945473610)
+,p_data_profile_id=>wwv_flow_imp.id(10742093932804473589)
+,p_name=>'EMBEDHTML'
+,p_sequence=>27
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'player.embedHtml'
+);
+wwv_flow_imp.component_end;
+end;
+/

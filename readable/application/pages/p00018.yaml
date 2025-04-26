@@ -1,0 +1,385 @@
+---
+# ====== Page: Color Coded Cards =============================
+id: 18
+identification: 
+  name: Color Coded Cards
+  alias: COLOR-CODED-CARDS
+  title: '&APP_NAME. - Color Coded Cards'
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+css: 
+  inline: |
+    :root {
+        --a-cv-subtitle-text-color: inherit;
+        --a-cv-subcontent-text-color: inherit;
+    }
+    
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Breadcrumb ==================================
+  id: 6147569779443155478
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11333626549511581887
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Icons =======================================
+  id: 6162731981920418665
+  identification: 
+    name: Icons
+    type: Cards
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select EMPNO,
+             ENAME,
+             JOB,
+             MGR,
+             HIREDATE,
+             SAL,
+             COMM,
+             DEPTNO,
+             case when deptno = 10 then
+                 'u-color-2'
+             when deptno = 20 then
+                 'u-color-3'
+             when deptno = 30 then
+                 'u-color-4'
+             when deptno = 40 then
+                 'u-color-5'
+             end card_color
+        from EBA_DEMO_CARD_EMP
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container
+    template-options: 
+    - '#DEFAULT#'
+    - t-CardsRegion--styleB
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 6162732042131418666
+    appearance: 
+      layout: Grid
+      grid-columns: Auto
+
+    title: 
+      advanced-formatting: false
+      column: ENAME
+
+    subtitle: 
+      advanced-formatting: false
+      column: DEPTNO
+
+    body: 
+      advanced-formatting: false
+      column: JOB
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: Initials
+      icon-column: ENAME
+      icon-css-classes: '&CARD_COLOR!ATTR.'
+      icon-position: Top
+
+    media: 
+      advanced-formatting: false
+      source: No Media
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-count: false
+
+- # ====== Region: RDS =========================================
+  id: 6162732180692418667
+  identification: 
+    name: RDS
+    type: Region Display Selector
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      mode: View Single Region
+      display-region-icons: false
+      include-'show-all': false
+      remember-selection: No
+
+- # ====== Region: Cards =======================================
+  id: 6907212960802395608
+  identification: 
+    name: Cards
+    type: Cards
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select EMPNO,
+             ENAME,
+             JOB,
+             MGR,
+             HIREDATE,
+             SAL,
+             COMM,
+             DEPTNO,
+             case when deptno = 10 then
+                 'u-color-2'
+             when deptno = 20 then
+                 'u-color-3'
+             when deptno = 30 then
+                 'u-color-4'
+             when deptno = 40 then
+                 'u-color-5'
+             end card_color
+        from EBA_DEMO_CARD_EMP
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 6137776703706258753
+    appearance: 
+      layout: Grid
+      grid-columns: Auto
+
+    card: 
+      css-classes: 
+      - '&CARD_COLOR!ATTR.'
+
+    title: 
+      advanced-formatting: false
+      column: ENAME
+
+    subtitle: 
+      advanced-formatting: false
+      column: DEPTNO
+
+    body: 
+      advanced-formatting: false
+      column: JOB
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: No Icon
+
+    media: 
+      advanced-formatting: false
+      source: No Media
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-count: false
+
+- # ====== Region: About this page =============================
+  id: 9006759184008709588
+  identification: 
+    name: About this page
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>You can color code cards or icons based on a column value.</p>
+      <p>This page color codes cards and icon background colors by departments. The region query uses <a href="https://apex.oracle.com/pls/apex/apex_pm/r/ut/color-and-status-modifiers" target="_blank">Universal Theme Color Modifiers</a> and selects this as column:
+      <pre>
+      case when deptno = 10 then
+          'u-color-2'
+      when deptno = 20 then
+          'u-color-3'
+      when deptno = 30 then
+          'u-color-4'
+      when deptno = 40 then
+          'u-color-5'
+      end card_color
+      </pre>
+      Cards CSS Classes and Icon CSS Classes use this column substitution, <em>&CARD_COLOR !ATTR.</em>, to get the value.
+      </p>
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Collapsible
+    template-options: 
+    - '#DEFAULT#'
+    - is-collapsed
+    - t-Region--scrollBody
+    icon: fa-paint-brush
+    render-components: Below Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+

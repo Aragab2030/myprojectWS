@@ -1,0 +1,290 @@
+---
+# ====== Page: Background Image ==============================
+id: 7
+identification: 
+  name: Background Image
+  alias: BACKGROUND-IMAGE
+  title: '&APP_NAME. - Background Image'
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Breadcrumb ==================================
+  id: 6147570510812155486
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11333626549511581887
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: About this page =============================
+  id: 6728026436691973329
+  identification: 
+    name: About this page
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>Cards regions can be sourced by REST Data Sources.  This page uses <a href="&MOVIEDB_API." title="Movie Database API" target="_blank">The Movie Database (TMDb) API</a> as a REST Data Source.</p>
+      
+      <p>This page displays movie posters as a Cards region's Media background.  It also displays the same movie poster image as each card's icon (for an overlay effect).</p>
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Collapsible
+    template-options: 
+    - '#DEFAULT#'
+    - is-collapsed
+    - t-Region--scrollBody
+    icon: fa-film
+    render-components: Below Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Background Image ============================
+  id: 11382542183993322847
+  identification: 
+    name: Background Image
+    type: Cards
+
+  source: 
+    location: REST Source
+    rest-source: Movie Database # 11341501362616297656
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container
+    template-options: 
+    - '#DEFAULT#'
+    - u-colors
+    - t-CardsRegion--styleA
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  parameters: 
+  - # ====== Parameter: language =================================
+    id: 11382542397307322849
+    identification: 
+      name: language # 11341502351497297657
+
+    operation: 
+      http-method: All
+      database-operation: All
+
+    parameter: 
+      direction: In
+      data-type: String
+
+    value: 
+      type: Static Value
+      static-value: en-US
+
+  attributes: 
+    id: 11382542494825322850
+    appearance: 
+      layout: Grid
+      grid-columns: Auto
+
+    title: 
+      advanced-formatting: false
+      column: TITLE
+
+    subtitle: 
+      advanced-formatting: false
+      column: RELEASE_DATE
+
+    body: 
+      advanced-formatting: false
+      column: OVERVIEW
+
+    secondary-body: 
+      advanced-formatting: false
+      column: MEDIA_TYPE
+
+    icon-and-badge: 
+      icon-source: Image URL
+      image-url: 'https://image.tmdb.org/t/p/w500&POSTER_PATH.'
+      icon-position: Top
+      icon-description: '&TITLE!ATTR.'
+      badge-column: VOTE_AVERAGE
+      badge-label: 'Rating:'
+
+    media: 
+      advanced-formatting: false
+      source: Image URL
+      url: 'https://image.tmdb.org/t/p/w500&POSTER_PATH.'
+      position: As Background Image
+      appearance: Auto
+      sizing: Cover
+      image-description: '&TITLE!ATTR.'
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Page
+      show-total-count: false
+      cards-per-page: 20
+
+    actions: 
+    - # ====== Action: Add to List =================================
+      id: 9818925009280666831
+      identification: 
+        type: Button
+        label: Add to List
+
+      layout: 
+        position: Primary
+        sequence: 10
+
+      link: 
+        type: Redirect to URL
+        target: '#'
+
+      appearance: 
+        display-type: Text
+        hot: true
+
+    - # ====== Action: Add to Favorite =============================
+      id: 9818925101760666832
+      identification: 
+        type: Button
+        label: Add to Favorite
+
+      layout: 
+        position: Secondary
+        sequence: 20
+
+      link: 
+        type: Redirect to URL
+        target: '#'
+
+      appearance: 
+        display-type: Icon
+        icon: fa-heart-o
+        hot: false
+
+    - # ====== Action: Share =======================================
+      id: 9818925160304666833
+      identification: 
+        type: Button
+        label: Share
+
+      layout: 
+        position: Secondary
+        sequence: 30
+
+      link: 
+        type: Redirect to URL
+        target: '#'
+
+      appearance: 
+        display-type: Icon
+        icon: fa-share-alt
+        hot: false
+

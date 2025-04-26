@@ -1,0 +1,753 @@
+---
+# ====== Page: Faceted Search with Cards =====================
+id: 12
+identification: 
+  name: Faceted Search with Cards
+  alias: FACETED-SEARCH-WITH-CARDS
+  title: '&APP_NAME. - Faceted Search'
+
+appearance: 
+  page-mode: Normal
+  page-template: Left Side Column
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Breadcrumb ==================================
+  id: 6147569847624155479
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11333626549511581887
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: About this page =============================
+  id: 9710618217307477230
+  identification: 
+    name: About this page
+    type: Static Content
+
+  source: 
+    html-code: <p>You can combine Cards region with a Faceted Search. This provides an easy-to-use interface for narrowing down the results and quickly locating specific data.</p>
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Collapsible
+    template-options: 
+    - '#DEFAULT#'
+    - is-collapsed
+    - t-Region--scrollBody
+    icon: fa-filter
+    render-components: Below Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Search Results ==============================
+  id: 9816606823089541550
+  identification: 
+    name: Search Results
+    type: Cards
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select "EMPNO",
+             "ENAME",
+             "JOB",
+             "MGR",
+             ( select l1."ENAME" from eba_demo_card_emp l1 where l1."EMPNO" = m."MGR") "MGR_L$1",
+             "HIREDATE",
+             "SAL",
+             "COMM",
+             "DEPTNO",
+             ( select l2."DNAME" from eba_demo_card_dept l2 where l2."DEPTNO" = m."DEPTNO") "DEPTNO_L$2",
+             "PROFILE_IMAGE",
+             "MIMETYPE",
+             "FILENAME",
+             "IMAGE_LAST_UPDATE"
+      from eba_demo_card_emp m
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container
+    template-options: 
+    - '#DEFAULT#'
+    - t-CardsRegion--styleB
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 9816610556533541563
+    appearance: 
+      layout: Grid
+      grid-columns: Auto
+
+    card: 
+      primary-key-column-1: EMPNO
+
+    title: 
+      advanced-formatting: false
+      column: ENAME
+
+    subtitle: 
+      advanced-formatting: false
+      column: JOB
+
+    body: 
+      advanced-formatting: false
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: Image BLOB Column
+      image-column: PROFILE_IMAGE
+      icon-position: Start
+      icon-description: '&ENAME!ATTR.'
+      badge-column: DEPTNO_L$2
+
+    media: 
+      advanced-formatting: false
+      source: No Media
+
+    blob-attributes: 
+      mime-type-column: MIMETYPE
+      last-updated-column: IMAGE_LAST_UPDATE
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-count: false
+
+- # ====== Region: Search ======================================
+  id: 9816606931907541550
+  identification: 
+    name: Search
+    type: Faceted Search
+
+  source: 
+    filtered-region: Search Results # 9816606823089541550
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_02
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: 4
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--noPadding
+    - t-Region--hideHeader
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      batch-facet-changes: false
+      compact-numbers-threshold: 10000
+      show-current-facets: Selector
+      current-facets-selector: '#active_facets'
+      show-total-row-count: Yes
+      show-charts: Dialog
+      display-chart-for-top-n-values: 10
+
+  facets: 
+  - # ====== Facet: P12_SEARCH ===================================
+    id: 9816607496743541556
+    identification: 
+      name: P12_SEARCH
+      type: Search
+
+    label: 
+      label: Search
+
+    settings: 
+      search-type: Row Search
+      input-field: Top of Faceted Search Region
+
+    layout: 
+      sequence: 10
+
+    source: 
+      database-column(s): ENAME,JOB,MGR,DEPTNO,MIMETYPE,FILENAME
+
+    security: 
+      store-value-encrypted-in-session-state: true
+
+  - # ====== Facet: P12_DEPTNO ===================================
+    id: 9816607888804541558
+    identification: 
+      name: P12_DEPTNO
+      type: Checkbox Group
+
+    label: 
+      label: Department
+      show-label-for-current-facet: true
+
+    layout: 
+      sequence: 20
+
+    appearance: 
+      display: Inline
+
+    list-of-values: 
+      type: Shared Component
+      list-of-values: DEPT.DNAME # 10742182293259688219
+      include-null-option: false
+
+    list-entries: 
+      compute-counts: true
+      show-counts: true
+      zero-count-entries: Hide
+      sort-by-top-counts: true
+      show-selected-first: false
+      maximum-displayed-entries: 5
+      display-filter-initially: false
+
+    actions-menu: 
+      filter: false
+      chart: true
+
+    advanced: 
+      show-chart-initially: false
+      collapsible: true
+      initially-collapsed: false
+
+    source: 
+      database-column: DEPTNO
+      data-type: NUMBER
+
+    multiple-values: 
+      type: No
+
+    security: 
+      store-value-encrypted-in-session-state: true
+      escape-special-characters: true
+
+  - # ====== Facet: P12_MGR ======================================
+    id: 9816608305777541559
+    identification: 
+      name: P12_MGR
+      type: Checkbox Group
+
+    label: 
+      label: Manager
+      show-label-for-current-facet: true
+
+    layout: 
+      sequence: 30
+
+    appearance: 
+      display: Inline
+
+    list-of-values: 
+      type: Shared Component
+      list-of-values: EMP.MGR # 10742182068541684675
+      include-null-option: false
+
+    list-entries: 
+      compute-counts: true
+      show-counts: true
+      zero-count-entries: Hide
+      sort-by-top-counts: true
+      show-selected-first: false
+      maximum-displayed-entries: 5
+      display-filter-initially: false
+
+    actions-menu: 
+      filter: false
+      chart: true
+
+    advanced: 
+      show-chart-initially: false
+      collapsible: true
+      initially-collapsed: false
+
+    source: 
+      database-column: MGR
+      data-type: NUMBER
+
+    multiple-values: 
+      type: No
+
+    security: 
+      store-value-encrypted-in-session-state: true
+      escape-special-characters: true
+
+  - # ====== Facet: P12_JOB ======================================
+    id: 9816608642322541559
+    identification: 
+      name: P12_JOB
+      type: Checkbox Group
+
+    label: 
+      label: Job
+      show-label-for-current-facet: true
+
+    layout: 
+      sequence: 40
+
+    appearance: 
+      display: Inline
+
+    list-of-values: 
+      type: Distinct Values
+      sort-direction: Ascending
+      include-null-option: false
+
+    list-entries: 
+      compute-counts: true
+      show-counts: true
+      zero-count-entries: Hide
+      sort-by-top-counts: true
+      show-selected-first: false
+      maximum-displayed-entries: 5
+      display-filter-initially: false
+
+    actions-menu: 
+      filter: false
+      chart: true
+
+    advanced: 
+      show-chart-initially: false
+      collapsible: true
+      initially-collapsed: false
+
+    source: 
+      database-column: JOB
+      data-type: VARCHAR2
+
+    multiple-values: 
+      type: No
+
+    security: 
+      store-value-encrypted-in-session-state: true
+      escape-special-characters: true
+
+  - # ====== Facet: P12_SAL ======================================
+    id: 9816609053181541561
+    identification: 
+      name: P12_SAL
+      type: Range
+
+    label: 
+      label: Salary
+      show-label-for-current-facet: true
+
+    settings: 
+      select-multiple: true
+      manual-entry: false
+
+    layout: 
+      sequence: 50
+
+    appearance: 
+      display: Inline
+
+    list-of-values: 
+      type: Static Values
+      static-values: 'STATIC2:<900;|900,900 - 1#G#300;900|1300,1#G#300 - 2#G#000;1300|2000,2#G#000 - 2#G#500;2000|2500,>=2#G#500;2500|'
+
+    list-entries: 
+      compute-counts: true
+      show-counts: true
+      zero-count-entries: Hide
+      show-selected-first: false
+      maximum-displayed-entries: 100
+      display-filter-initially: false
+
+    actions-menu: 
+      filter: false
+      chart: true
+
+    advanced: 
+      show-chart-initially: false
+      collapsible: true
+      initially-collapsed: false
+
+    source: 
+      database-column: SAL
+      data-type: NUMBER
+
+    security: 
+      store-value-encrypted-in-session-state: true
+
+  filters: 
+  - # ====== Filter: P12_SEARCH ==================================
+    id: 9816607496743541556
+    identification: 
+      name: P12_SEARCH
+      type: Search
+
+    label: 
+      label: Search
+
+    settings: 
+      search-type: Row Search
+      collapsed-search-field: false
+
+    layout: 
+      sequence: 10
+
+    source: 
+      database-column(s): ENAME,JOB,MGR,DEPTNO,MIMETYPE,FILENAME
+
+    security: 
+      store-value-encrypted-in-session-state: true
+
+  - # ====== Filter: P12_DEPTNO ==================================
+    id: 9816607888804541558
+    identification: 
+      name: P12_DEPTNO
+      type: Checkbox Group
+
+    label: 
+      label: Department
+
+    layout: 
+      sequence: 20
+
+    list-of-values: 
+      type: Shared Component
+      list-of-values: DEPT.DNAME # 10742182293259688219
+      include-null-option: false
+
+    list-entries: 
+      compute-counts: true
+      show-counts: true
+      zero-count-entries: Hide
+      sort-by-top-counts: true
+      show-selected-first: false
+      client-side-filtering: false
+
+    suggestions: 
+      type: None
+
+    source: 
+      database-column: DEPTNO
+      data-type: NUMBER
+
+    multiple-values: 
+      type: No
+
+    security: 
+      store-value-encrypted-in-session-state: true
+      escape-special-characters: true
+
+  - # ====== Filter: P12_MGR =====================================
+    id: 9816608305777541559
+    identification: 
+      name: P12_MGR
+      type: Checkbox Group
+
+    label: 
+      label: Manager
+
+    layout: 
+      sequence: 30
+
+    list-of-values: 
+      type: Shared Component
+      list-of-values: EMP.MGR # 10742182068541684675
+      include-null-option: false
+
+    list-entries: 
+      compute-counts: true
+      show-counts: true
+      zero-count-entries: Hide
+      sort-by-top-counts: true
+      show-selected-first: false
+      client-side-filtering: false
+
+    suggestions: 
+      type: None
+
+    source: 
+      database-column: MGR
+      data-type: NUMBER
+
+    multiple-values: 
+      type: No
+
+    security: 
+      store-value-encrypted-in-session-state: true
+      escape-special-characters: true
+
+  - # ====== Filter: P12_JOB =====================================
+    id: 9816608642322541559
+    identification: 
+      name: P12_JOB
+      type: Checkbox Group
+
+    label: 
+      label: Job
+
+    layout: 
+      sequence: 40
+
+    list-of-values: 
+      type: Distinct Values
+      sort-direction: Ascending
+      include-null-option: false
+
+    list-entries: 
+      compute-counts: true
+      show-counts: true
+      zero-count-entries: Hide
+      sort-by-top-counts: true
+      show-selected-first: false
+      client-side-filtering: false
+
+    suggestions: 
+      type: None
+
+    source: 
+      database-column: JOB
+      data-type: VARCHAR2
+
+    multiple-values: 
+      type: No
+
+    security: 
+      store-value-encrypted-in-session-state: true
+      escape-special-characters: true
+
+  - # ====== Filter: P12_SAL =====================================
+    id: 9816609053181541561
+    identification: 
+      name: P12_SAL
+      type: Range
+
+    label: 
+      label: Salary
+
+    settings: 
+      select-multiple: true
+      manual-entry: false
+
+    layout: 
+      sequence: 50
+
+    list-of-values: 
+      type: Static Values
+      static-values: 'STATIC2:<900;|900,900 - 1#G#300;900|1300,1#G#300 - 2#G#000;1300|2000,2#G#000 - 2#G#500;2000|2500,>=2#G#500;2500|'
+
+    list-entries: 
+      compute-counts: true
+      show-counts: true
+      zero-count-entries: Hide
+      show-selected-first: false
+      client-side-filtering: false
+
+    suggestions: 
+      type: None
+
+    source: 
+      database-column: SAL
+      data-type: NUMBER
+
+    security: 
+      store-value-encrypted-in-session-state: true
+
+- # ====== Region: Button Bar ==================================
+  id: 9816609342494541561
+  identification: 
+    name: Button Bar
+    type: Static Content
+
+  source: 
+    html-code: <div id="active_facets"></div>
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Buttons Container
+    template-options: 
+    - '#DEFAULT#'
+    - t-ButtonRegion--noPadding
+    - t-ButtonRegion--noUI
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+buttons: 
+- # ====== Button: RESET =======================================
+  id: 9816609821792541562
+  identification: 
+    button-name: RESET
+    label: Reset
+
+  layout: 
+    sequence: 10
+    region: Button Bar # 9816609342494541561
+    slot: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text with Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--noUI
+    - t-Button--iconLeft
+    icon: fa-undo
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:12:&SESSION.::&DEBUG.:RR,12::'
+      page: 12 # Faceted Search with Cards
+      clear-cache: RR,12
+
+    warn-on-unsaved-changes: Do Not Check
+

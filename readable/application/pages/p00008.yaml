@@ -1,0 +1,515 @@
+---
+# ====== Page: Application Static Files ======================
+id: 8
+identification: 
+  name: Application Static Files
+  alias: APP-STATIC-FILES
+  title: '&APP_NAME. - Application Static Files'
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+css: 
+  inline: |
+    .urlImages .a-CardView-media--widescreen:before {
+        padding-top: 20%;
+    }
+    
+    .urlImages .a-CardView-iconWrap {
+        margin-top: calc(var(--a-cv-icon-container-size) / 2 * -1 - var(--a-cv-header-padding-y));
+    }
+    .urlImages .a-CardView-icon {
+        box-shadow: #fff 0 0 0 4px;
+    }
+    
+    .apex-theme-redwood-light .urlImages .a-CardView-icon {
+        background-color: #508223;
+        color: #fff;
+    }
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Float with Custom CSS =======================
+  id: 6035141060209361202
+  identification: 
+    name: Float with Custom CSS
+    type: Cards
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select 'fa-apex'  icon_class,
+             :APP_IMAGES || file_name image_url
+      from apex_application_static_files
+      where file_name = 'apex-mountain-range_light.png'
+      and application_id = :APP_ID
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 60
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container
+    template-options: 
+    - '#DEFAULT#'
+    - t-CardsRegion--styleB
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 6035141150375361203
+    appearance: 
+      layout: Float
+
+    card: 
+      css-classes: 
+      - urlImages
+
+    title: 
+      advanced-formatting: true
+      html-expression: <h3 class="a-CardView-title ">What is Oracle APEX?</h3>
+
+    subtitle: 
+      advanced-formatting: false
+
+    body: 
+      advanced-formatting: true
+      html-expression: |
+        <p>Oracle Application Express (APEX) is a low-code development platform that enables you to build scalable, secure enterprise apps, with world-class features, that can be deployed anywhere.</p>
+        
+        <p>Using APEX, developers can quickly develop and deploy compelling apps that solve real problems and provide immediate value. You won't need to be an expert in a vast array of technologies to deliver sophisticated solutions. Focus on solving the problem and let APEX take care of the rest.</p>
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: Icon Class Column
+      icon-column: ICON_CLASS
+      icon-css-classes: fa
+      icon-position: Start
+
+    media: 
+      advanced-formatting: false
+      source: Image URL
+      url: '&IMAGE_URL!ATTR.'
+      position: First
+      appearance: Widescreen
+      sizing: Cover
+      image-description: Redwood Mountain
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-count: false
+
+    actions: 
+    - # ====== Action: Title =======================================
+      id: 6035141190969361204
+      identification: 
+        type: Title
+
+      layout: 
+        sequence: 10
+
+      link: 
+        type: Redirect to URL
+        target: 'https://apex.oracle.com'
+        link-attributes: target="_blank"
+
+- # ====== Region: Horizontal Media Background =================
+  id: 6035141293686361205
+  identification: 
+    name: Horizontal Media Background
+    type: Cards
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select 'fa-apex'  icon_class,
+             :APP_IMAGES || file_name image_url
+      from apex_application_static_files
+      where file_name = 'apex-mountain-range_light.png'
+      and application_id = :APP_ID
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 50
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container
+    template-options: 
+    - '#DEFAULT#'
+    - t-CardsRegion--styleC
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 6035141461507361206
+    appearance: 
+      layout: Horizontal (Row)
+
+    title: 
+      advanced-formatting: true
+      html-expression: <h3 class="a-CardView-title ">What is Oracle APEX?</h3>
+
+    subtitle: 
+      advanced-formatting: false
+
+    body: 
+      advanced-formatting: true
+      html-expression: |
+        <p>Oracle Application Express (APEX) is a low-code development platform that enables you to build scalable, secure enterprise apps, with world-class features, that can be deployed anywhere.</p>
+        
+        <p>Using APEX, developers can quickly develop and deploy compelling apps that solve real problems and provide immediate value. You won't need to be an expert in a vast array of technologies to deliver sophisticated solutions. Focus on solving the problem and let APEX take care of the rest.</p>
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: Icon Class Column
+      icon-column: ICON_CLASS
+      icon-css-classes: fa
+      icon-position: Start
+
+    media: 
+      advanced-formatting: false
+      source: URL Column
+      url-column: IMAGE_URL
+      position: As Background Image
+      appearance: Auto
+      sizing: Cover
+      image-description: Redwood Mountain
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-count: false
+
+    actions: 
+    - # ====== Action: Title =======================================
+      id: 6035141544651361207
+      identification: 
+        type: Title
+
+      layout: 
+        sequence: 10
+
+      link: 
+        type: Redirect to URL
+        target: 'https://apex.oracle.com'
+        link-attributes: target="_blank"
+
+- # ====== Region: Horizontal Media First ======================
+  id: 6035141620162361208
+  identification: 
+    name: Horizontal Media First
+    type: Cards
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select 'fa-apex'  icon_class,
+             :APP_IMAGES || file_name image_url
+      from apex_application_static_files
+      where file_name = 'apex-mountain-range_light.png'
+      and application_id = :APP_ID
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container
+    template-options: 
+    - '#DEFAULT#'
+    - t-CardsRegion--styleB
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 6035141696325361209
+    appearance: 
+      layout: Horizontal (Row)
+
+    title: 
+      advanced-formatting: true
+      html-expression: <h3 class="a-CardView-title ">What is Oracle APEX?</h3>
+
+    subtitle: 
+      advanced-formatting: false
+
+    body: 
+      advanced-formatting: true
+      html-expression: |
+        <p>Oracle Application Express (APEX) is a low-code development platform that enables you to build scalable, secure enterprise apps, with world-class features, that can be deployed anywhere.</p>
+        
+        <p>Using APEX, developers can quickly develop and deploy compelling apps that solve real problems and provide immediate value. You won't need to be an expert in a vast array of technologies to deliver sophisticated solutions. Focus on solving the problem and let APEX take care of the rest.</p>
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: Icon Class Column
+      icon-column: ICON_CLASS
+      icon-css-classes: fa
+      icon-position: Start
+
+    media: 
+      advanced-formatting: false
+      source: URL Column
+      url-column: IMAGE_URL
+      position: First
+      appearance: Widescreen
+      sizing: Cover
+      image-description: Redwood Mountain
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-count: false
+
+    actions: 
+    - # ====== Action: Title =======================================
+      id: 6035141826012361210
+      identification: 
+        type: Title
+
+      layout: 
+        sequence: 10
+
+      link: 
+        type: Redirect to URL
+        target: 'https://apex.oracle.com'
+        link-attributes: target="_blank"
+
+- # ====== Region: RDS =========================================
+  id: 6035141930219361211
+  identification: 
+    name: RDS
+    type: Region Display Selector
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      mode: View Single Region
+      display-region-icons: false
+      include-'show-all': false
+      remember-selection: No
+
+- # ====== Region: Breadcrumb ==================================
+  id: 6147570587461155487
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11333626549511581887
+
+  layout: 
+    sequence: 70
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: About this page =============================
+  id: 7420913198833651226
+  identification: 
+    name: About this page
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>You can reference application static files as Cards images.  Please note Cards expects ampersand (&) substitution syntax. Usual way of referencing application static files cannot be used. i.e. <em>#APP_IMAGE#myAppImage.png</em>. Also, <strong>APP_IMAGES</strong> substituion needs to be substituted from the server as it is not one of the built-in substitutions client-side supports to render the value.</p>
+      
+      <p>Let's say you are using <em>IMAGE_URL</em> column as Cards media image, use the following query to reference the application static file:</p>
+      
+      <pre>
+      select :APP_IMAGES || file_name as image_url
+      from apex_application_static_files
+      where file_name = 'myAppImage.png'
+      and application_id = :APP_ID
+      </pre>
+      
+      <p>You can also define your own CSS classes to customize Cards styles. <strong>Float with Custom CSS</strong> example displays Cards Icon and Media differently using page inline CSS.</p>
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Collapsible
+    template-options: 
+    - '#DEFAULT#'
+    - is-collapsed
+    - t-Region--scrollBody
+    icon: fa-file-image-o
+    render-components: Below Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+

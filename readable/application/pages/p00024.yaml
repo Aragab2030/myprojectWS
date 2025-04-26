@@ -1,0 +1,404 @@
+---
+# ====== Page: Conditional Actions ===========================
+id: 24
+identification: 
+  name: Conditional Actions
+  alias: CONDITIONAL-ACTIONS1
+  title: Conditional Actions
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: false
+
+css: 
+  inline: |
+    .c-label{
+        display:inline-flex; 
+        align-items:center;
+         margin-bottom:10px;
+    }
+    
+    .c-checkbox{
+        margin-right:10px;
+        background-color: maroon  !important;
+         border: 1px solid maroon !important;
+    }
+    
+    /* Good Checkbox style to be viewed */
+    /* input[type="checkbox"][disabled][checked] {
+      background-color: maroon !important;
+    }
+    input[type="checkbox"][disabled] {
+      filter: invert(100%) hue-rotate(18deg) brightness(5);
+    } */
+    
+    input[disabled][type="checkbox"]:checked::before {
+    content: "?";
+        position: relative;
+        background: maroon;
+        font-size: 10px;
+        top: -2.5px;
+        left: 0.5px;
+        font-weight: 200;
+        color: white;
+        padding: 2px 4px;
+        font-weight: bold;
+        border-radius: 4px;
+    }
+    
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: About this page =============================
+  id: 8968239839295263096
+  identification: 
+    name: About this page
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>You can add multiple actions per Card.  Also, an action can display conditionally based on column values for each row.</p>
+      <p>This example displays 2 actions per card.  Title action displays without any condition.  Edit button action displays only if employee belongs to department 10.</p>
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Collapsible
+    template-options: 
+    - '#DEFAULT#'
+    - is-collapsed
+    - t-Region--scrollBody
+    icon: fa-link
+    render-components: Below Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Conditional Card Actions ====================
+  id: 11551512584823524269
+  identification: 
+    name: Conditional Card Actions
+    type: Cards
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select EMPNO,
+             'Human Development Coropration' ENAME,
+             'Subsidary Status' JOB,
+             MGR,
+             HIREDATE,
+             SAL,
+             COMM,
+             'Published' DEPTNO,
+             PROFILE_IMAGE,
+             MIMETYPE,
+             FILENAME,
+             IMAGE_LAST_UPDATE,
+             TAGS,
+            (SELECT LISTAGG('<label class="c-label"><input type="checkbox"  value="' || SERVICE_NAME || ' " checked disabled class="c-checkbox">' || SERVICE_NAME || '</label>' , '<br>') 
+              WITHIN GROUP (ORDER BY SERVICE_NAME)
+           FROM MOJ.SERVICES_LIST where status = 'Y') AS "CARD_BODY"
+        from EBA_DEMO_CARD_EMP
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container
+    template-options: 
+    - '#DEFAULT#'
+    - t-CardsRegion--styleA
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 8714309053139
+    appearance: 
+      layout: Grid
+      grid-columns: Auto
+
+    card: 
+      primary-key-column-1: EMPNO
+
+    title: 
+      advanced-formatting: false
+      column: ENAME
+
+    subtitle: 
+      advanced-formatting: false
+      column: JOB
+
+    body: 
+      advanced-formatting: true
+      html-expression: |
+        <p><b>Selected Service</b></p>
+        
+
+    secondary-body: 
+      advanced-formatting: true
+      html-expression: |
+        <div style="margin: 0 20px;">  
+             &CARD_BODY!RAW.
+        </div>
+
+    icon-and-badge: 
+      icon-source: Image BLOB Column
+      image-column: PROFILE_IMAGE
+      icon-position: Start
+      icon-description: '&ENAME. - &JOB.'
+      badge-column: DEPTNO
+      badge-label: 'Department: '
+
+    media: 
+      advanced-formatting: false
+      source: No Media
+
+    blob-attributes: 
+      mime-type-column: MIMETYPE
+      last-updated-column: IMAGE_LAST_UPDATE
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-count: false
+
+    actions: 
+    - # ====== Action: Deactivate ==================================
+      id: 3331114121008413
+      identification: 
+        type: Button
+        label: Deactivate
+
+      layout: 
+        position: Secondary
+        sequence: 30
+
+      link: 
+        type: Redirect to Page in this Application
+        target: 
+          url: 'f?p=&APP_ID.:14:&SESSION.::&DEBUG.:14:P14_EMPNO:&EMPNO.'
+          page: 14 # Employee Detail
+          clear-cache: 14
+          values: 
+            p14_empno: '&EMPNO.'
+
+      appearance: 
+        display-type: Text with Icon
+        icon: fa-file-o
+        hot: true
+
+    - # ====== Action: Delete ======================================
+      id: 3331015378008412
+      identification: 
+        type: Button
+        label: Delete
+
+      layout: 
+        position: Secondary
+        sequence: 60
+
+      link: 
+        type: Redirect to Page in this Application
+        target: 
+          url: 'f?p=&APP_ID.:14:&SESSION.::&DEBUG.:14:P14_EMPNO:&EMPNO.'
+          page: 14 # Employee Detail
+          clear-cache: 14
+          values: 
+            p14_empno: '&EMPNO.'
+
+      appearance: 
+        display-type: Text with Icon
+        icon: fa-file-o
+        hot: true
+
+    - # ====== Action: Full Card ===================================
+      id: 3330605216008408
+      identification: 
+        type: Full Card
+
+      layout: 
+        sequence: 70
+
+      link: 
+        type: Redirect to Page in this Application
+        target: 
+          url: 'f?p=&APP_ID.:14:&SESSION.::&DEBUG.:::'
+          page: 14 # Employee Detail
+
+    - # ====== Action: Title =======================================
+      id: 9244344053140
+      identification: 
+        type: Title
+
+      layout: 
+        sequence: 20
+
+      link: 
+        type: Redirect to Page in this Application
+        target: 
+          url: 'f?p=&APP_ID.:24:&SESSION.::&DEBUG.:::'
+          page: 24 # Conditional Actions
+
+      security: 
+        authorization-scheme: Administration Rights # 11333768303963582080
+
+    - # ====== Action: Edit ========================================
+      id: 9827897053142
+      identification: 
+        type: Button
+        label: Edit
+
+      layout: 
+        position: Secondary
+        sequence: 40
+
+      link: 
+        type: Redirect to Page in this Application
+        target: 
+          url: 'f?p=&APP_ID.:14:&SESSION.::&DEBUG.:14:P14_EMPNO:&EMPNO.'
+          page: 14 # Employee Detail
+          clear-cache: 14
+          values: 
+            p14_empno: '&EMPNO.'
+
+      appearance: 
+        display-type: Text with Icon
+        icon: fa-file-o
+        hot: true
+
+page-items: 
+- # ====== Page Item: P24_ORDER_BY =============================
+  id: 5686858597807774237
+  identification: 
+    name: P24_ORDER_BY
+    type: Select List
+
+  label: 
+    label: Order By
+    alignment: Left
+
+  settings: 
+    page-action-on-selection: None
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 10
+    region: Conditional Card Actions # 11551512584823524269
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    height: 1
+
+  validation: 
+    value-required: false
+
+  list-of-values: 
+    type: Static Values
+    static-values: 'STATIC2:Ename;ENAME,Job;JOB,Deptno;DEPTNO'
+    display-extra-values: false
+    display-null-value: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  default: 
+    type: Static
+    static-value: DEPTNO
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+

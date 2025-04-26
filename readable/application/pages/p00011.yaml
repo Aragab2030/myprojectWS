@@ -1,0 +1,284 @@
+---
+# ====== Page: Gauge Meter Chart Cards =======================
+id: 11
+identification: 
+  name: Gauge Meter Chart Cards
+  alias: GAUGE-METER-CHART-CARDS
+  title: '&APP_NAME. - Charts'
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+javascript: 
+  file-urls: 
+  - '[require jet]'
+  execute-when-page-loads: require(["ojs/ojgauge"], function() {});
+
+css: 
+  file-urls: 
+  - '#JET_CSS_DIRECTORY#alta/oj-alta-notag-min.css'
+  inline: |
+    .speedometer {
+        align: center;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        height: 120px;
+        width: 100%;
+    }
+    
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Breadcrumb ==================================
+  id: 6147570969888155490
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11333626549511581887
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Gauge Meter Chart Cards =====================
+  id: 9818082988728713905
+  identification: 
+    name: Gauge Meter Chart Cards
+    type: Cards
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      with v_speed as (
+          select id,
+             state,
+             license_plate,
+             location,
+             vehicle_speed,
+             posted_speed,
+             vehicle_speed - posted_speed over_speed,
+             posted_speed max_val
+          from eba_demo_card_vehicle_speed )
+      select s.id, s.state, s.license_plate, s.location,
+             s.vehicle_speed,
+             s.posted_speed,
+             s.over_speed,
+             s.max_val
+      from v_speed s
+      where over_speed > 0
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    static-id: gauge-container
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 9818083423134713908
+    appearance: 
+      layout: Grid
+      grid-columns: Auto
+
+    card: 
+      primary-key-column-1: ID
+
+    title: 
+      advanced-formatting: true
+      html-expression: '<strong>&LICENSE_PLATE.</strong> '
+
+    subtitle: 
+      advanced-formatting: false
+      column: LOCATION
+
+    body: 
+      advanced-formatting: true
+      html-expression: '&VEHICLE_SPEED. mph in &POSTED_SPEED. zone'
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: No Icon
+      badge-column: STATE
+      badge-label: 'State: '
+
+    media: 
+      advanced-formatting: true
+      html-expression: |
+        <oj-status-meter-gauge
+            id = "vehichle_speed"
+            angle-extent = 250
+            start-angle = 215
+            min = "0"
+            max = "&MAX_VAL!ATTR."
+            labelled-by="readOnly"
+            thresholds='[{"max": 5, "color": "yellow"},{"max": 19, "color": "orange"},{"max": 40, "color": "red"}]'
+            value = "&OVER_SPEED!ATTR."
+            label.text ="mph over"
+            orientation = "circular"
+            class="speedometer" readonly>
+        </oj-status-meter-gauge>
+      position: Body
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-count: false
+
+- # ====== Region: About this page =============================
+  id: 11212633713432616566
+  identification: 
+    name: About this page
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>You can display charts on cards using <a href="&JET_VISUALIZATION_URL." target="_blank">Oracle JET Data Visualizations</a>. This page uses <a href="https://www.oracle.com/webfolder/technetwork/jet/jetCookbook.html?component=statusMeterGauge&demo=statusMeterGaugeCircular" target="_blank">Status Meter Gauge</a>.</p>
+      
+      <p>Cards region does not load necessary Oracle JET library and CSS for you.  To display the vehicle speed using Status Meter Gauge:</p>
+      
+      <ol>
+      
+      
+      <li>
+          Enter <em>[require jet]</em> command as page inline JavaScript URL to automatically load Oracle JET RequireJS and configuration.
+      </li>
+      
+      <li>
+         Load Status Meter Gauge module by adding a call to require as page JavaScript execute on page load:
+           <pre>require(["ojs/ojgauge"], function() {});</pre>
+      </li>
+      
+      <li>
+          Add the following as page CSS File URLs to load Oracle JET CSS without tag selectors:
+          <pre>&#35;JET_CSS_DIRECTORY&#35;alta/oj-alta-notag-min.css</pre>
+      </li>
+      
+      <li>
+          Use Oracle JET <strong>&lt;oj-status-meter-gauge&gt;</strong> element as Cards Media HTML Expression.
+      </li>
+      
+      </ol>
+      
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Collapsible
+    template-options: 
+    - '#DEFAULT#'
+    - is-collapsed
+    - t-Region--scrollBody
+    icon: fa-dial-gauge-chart
+    render-components: Below Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+

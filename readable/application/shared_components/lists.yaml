@@ -1,0 +1,1340 @@
+---
+- # ====== List: Advanced ======================================
+  id: 6160792463658041659
+  identification: 
+    name: Advanced
+
+  subscription: 
+    version-number: 1089080073
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Charts =======================================
+    id: 6160792663909041664
+    label: 
+      label: Charts
+
+    icon: 
+      image/icon-css-classes: fa-dial-gauge-chart
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:11:&SESSION.::&DEBUG.::::'
+        page: 11 # Gauge Meter Chart Cards
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to display charts inside cards using Oracle JET Data Visualizations
+
+  - # ====== Entry: No Data Found ================================
+    id: 6160793039945041667
+    label: 
+      label: No Data Found
+
+    icon: 
+      image/icon-css-classes: fa-emoji-worry
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:17:&SESSION.::&DEBUG.::::'
+        page: 17 # No Data Found Message
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to define No Data Found messages for Cards regions
+
+  - # ====== Entry: Template Directives ==========================
+    id: 6160793410434041668
+    label: 
+      label: Template Directives
+
+    icon: 
+      image/icon-css-classes: fa-file-brackets
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:9:&SESSION.::&DEBUG.::::'
+        page: 9 # Template Directives
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to define template directives for Cards regions
+
+- # ====== List: Basics ========================================
+  id: 6160808450858161535
+  identification: 
+    name: Basics
+
+  subscription: 
+    version-number: 1089080073
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Color Coded Cards ============================
+    id: 6160808624124161536
+    label: 
+      label: Color Coded Cards
+
+    icon: 
+      image/icon-css-classes: fa-paint-brush
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:18:&SESSION.::&DEBUG.::::'
+        page: 18 # Color Coded Cards
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to color code cards based on a column value
+
+  - # ====== Entry: Faceted Search ===============================
+    id: 6160809010553161537
+    label: 
+      label: Faceted Search
+
+    icon: 
+      image/icon-css-classes: fa-filter
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:12:&SESSION.::&DEBUG.::::'
+        page: 12 # Faceted Search with Cards
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to combine a Cards region with a Faceted Search
+
+  - # ====== Entry: Star Icons ===================================
+    id: 6160809459659161537
+    label: 
+      label: Star Icons
+
+    icon: 
+      image/icon-css-classes: fa-star-o
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:13:&SESSION.::&DEBUG.::::'
+        page: 13 # Star Icons
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to use CSS styling to change the default shape of each card's icon initials
+
+  - # ====== Entry: Styles =======================================
+    id: 6160809819359161537
+    label: 
+      label: Styles
+
+    icon: 
+      image/icon-css-classes: fa-cards
+
+    layout: 
+      sequence: 40
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:3:&SESSION.::&DEBUG.::::'
+        page: 3 # Basic Cards
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to use the A, B, and C styles of a Cards region display
+
+- # ====== List: Images and Media ==============================
+  id: 6160823574195955649
+  identification: 
+    name: Images and Media
+
+  subscription: 
+    version-number: 1089080073
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Application Static Files =====================
+    id: 6160823737314955649
+    label: 
+      label: Application Static Files
+
+    icon: 
+      image/icon-css-classes: fa-file-image-o
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:8:&SESSION.::&DEBUG.::::'
+        page: 8 # Application Static Files
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to reference application static files as Cards images
+
+  - # ====== Entry: Background Image =============================
+    id: 6160824167150955650
+    label: 
+      label: Background Image
+
+    icon: 
+      image/icon-css-classes: fa-film
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:7:&SESSION.::&DEBUG.::::'
+        page: 7 # Background Image
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to display movie posters as a Cards region's media background and as it's icon (for overlay effects)
+
+  - # ====== Entry: BLOB Column ==================================
+    id: 6160824502934955650
+    label: 
+      label: BLOB Column
+
+    icon: 
+      image/icon-css-classes: fa-image
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:2:&SESSION.::&DEBUG.::::'
+        page: 2 # BLOB column
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to display images in Cards regions that are sourced from a BLOB column
+
+  - # ====== Entry: BLOB Column as URL ===========================
+    id: 6160824908067955650
+    label: 
+      label: BLOB Column as URL
+
+    icon: 
+      image/icon-css-classes: fa-file-image-o
+
+    layout: 
+      sequence: 40
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:5:&SESSION.::&DEBUG.::::'
+        page: 5 # BLOB Column as URL
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to display images in Cards regions that are sourced from a BLOB column as a URL
+
+  - # ====== Entry: Embedded Video ===============================
+    id: 6160825338866955650
+    label: 
+      label: Embedded Video
+
+    icon: 
+      image/icon-css-classes: fa-video-camera
+
+    layout: 
+      sequence: 50
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:6:&SESSION.::&DEBUG.::::'
+        page: 6 # Embedded Video
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to use the Cards region's Media Advanced Formatting option to add an HTML <code>&lt;iframe&gt;</code> tag that embeds a video player inline in each card
+
+  - # ====== Entry: Image URL ====================================
+    id: 6160825853679958585
+    label: 
+      label: Image URL
+
+    icon: 
+      image/icon-css-classes: fa-camera
+
+    layout: 
+      sequence: 70
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:4:&SESSION.::&DEBUG.::::'
+        page: 4 # Image URL
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to use Cards regions to display a photo gallery
+
+  - # ====== Entry: Video Images with Durations ==================
+    id: 6161281326312272744
+    label: 
+      label: Video Images with Durations
+
+    icon: 
+      image/icon-css-classes: fa-play
+
+    layout: 
+      sequence: 80
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10:&SESSION.::&DEBUG.::::'
+        page: 10 # APEX Play List
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to display cards that link to YouTube videos and display a background image along with a video duration overlay
+
+- # ====== List: Card Actions ==================================
+  id: 6160834949400080169
+  identification: 
+    name: Card Actions
+
+  subscription: 
+    version-number: 1089080073
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Conditional Actions ==========================
+    id: 6160835113110080173
+    label: 
+      label: Conditional Actions
+
+    icon: 
+      image/icon-css-classes: fa-workflow
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:16:&SESSION.::&DEBUG.::::'
+        page: 16 # Conditional Actions
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to add multiple actions per card
+
+  - # ====== Entry: Full Card Action =============================
+    id: 6160835520540080173
+    label: 
+      label: Full Card Action
+
+    icon: 
+      image/icon-css-classes: fa-clipboard-check
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:15:&SESSION.::&DEBUG.::::'
+        page: 15 # Full Card Action
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to define a single action for each card
+
+- # ====== List: Home ==========================================
+  id: 6160958219980814425
+  identification: 
+    name: Home
+
+  subscription: 
+    version-number: 1089080073
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Basics =======================================
+    id: 6160958472610814426
+    label: 
+      label: Basics
+
+    icon: 
+      image/icon-css-classes: fa-address-card-o
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:20:&SESSION.::&DEBUG.::::'
+        page: 20 # Basics
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to create color coded cards, a Cards region with a Faceted Search, and several other Cards regions using various styles
+
+  - # ====== Entry: Images and Media =============================
+    id: 6160958795846814426
+    label: 
+      label: Images and Media
+
+    icon: 
+      image/icon-css-classes: fa-image
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:21:&SESSION.::&DEBUG.::::'
+        page: 21 # Images and Media
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to display images and embedded videos in Cards regions
+
+  - # ====== Entry: Card Actions =================================
+    id: 6160959198826814426
+    label: 
+      label: Card Actions
+
+    icon: 
+      image/icon-css-classes: fa-link
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:22:&SESSION.::&DEBUG.::::'
+        page: 22 # Card Actions
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to make an each card link to a given URL or how to define different elements on each card that link to different URLs
+
+  - # ====== Entry: Advanced =====================================
+    id: 6160959592891814427
+    label: 
+      label: Advanced
+
+    icon: 
+      image/icon-css-classes: fa-ellipsis-h
+
+    layout: 
+      sequence: 40
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:19:&SESSION.::&DEBUG.::::'
+        page: 19 # Advanced
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      1.: Learn how to create a Cards region of charts, define a Cards region's No Data Found message, and use template directives to dynamically display information
+
+- # ====== List: Desktop Navigation Menu =======================
+  id: 11333626991482581890
+  identification: 
+    name: Desktop Navigation Menu
+
+  subscription: 
+    version-number: 1089080073
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Application Static Files =====================
+    id: 6056299505791525023
+    label: 
+      label: Application Static Files
+
+    icon: 
+      image/icon-css-classes: fa-file-image-o
+
+    layout: 
+      sequence: 140
+      parent-entry: Images and Media # 10742077044098322286
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 8
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:8:&SESSION.::&DEBUG.::::'
+        page: 8 # Application Static Files
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Template Directives ==========================
+    id: 6058604173119148784
+    label: 
+      label: Template Directives
+
+    icon: 
+      image/icon-css-classes: fa-file-brackets
+
+    layout: 
+      sequence: 90
+      parent-entry: Advanced # 6160801013569070619
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:9:&SESSION.::&DEBUG.::::'
+        page: 9 # Template Directives
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: BLOB Column as URL ===========================
+    id: 6060153452535757793
+    label: 
+      label: BLOB Column as URL
+
+    icon: 
+      image/icon-css-classes: fa-file-image-o
+
+    layout: 
+      sequence: 170
+      parent-entry: Images and Media # 10742077044098322286
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 5
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:5:&SESSION.::&DEBUG.::::'
+        page: 5 # BLOB Column as URL
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Star Icons ===================================
+    id: 6137768159083151349
+    label: 
+      label: Star Icons
+
+    icon: 
+      image/icon-css-classes: fa-star-o
+
+    layout: 
+      sequence: 120
+      parent-entry: Basics # 10741549490107258119
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:13:&SESSION.::&DEBUG.::::'
+        page: 13 # Star Icons
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Styles =======================================
+    id: 6137771221813166827
+    label: 
+      label: Styles
+
+    icon: 
+      image/icon-css-classes: fa-cards
+
+    layout: 
+      sequence: 130
+      parent-entry: Basics # 10741549490107258119
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:3:&SESSION.::&DEBUG.::::'
+        page: 3 # Basic Cards
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Color Coded Cards ============================
+    id: 6137775871349258746
+    label: 
+      label: Color Coded Cards
+
+    icon: 
+      image/icon-css-classes: fa-paint-brush
+
+    layout: 
+      sequence: 100
+      parent-entry: Basics # 10741549490107258119
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 18
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:18:&SESSION.::&DEBUG.::::'
+        page: 18 # Color Coded Cards
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Advanced =====================================
+    id: 6160801013569070619
+    label: 
+      label: Advanced
+
+    icon: 
+      image/icon-css-classes: fa-ellipsis-h
+
+    layout: 
+      sequence: 60
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 19
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:19:&SESSION.::&DEBUG.::::'
+        page: 19 # Advanced
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Video Images with Durations ==================
+    id: 6161283638392278964
+    label: 
+      label: Video Images with Durations
+
+    icon: 
+      image/icon-css-classes: fa-play
+
+    layout: 
+      sequence: 220
+      parent-entry: Images and Media # 10742077044098322286
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:10:&SESSION.::&DEBUG.::::'
+        page: 10 # APEX Play List
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Faceted Search ===============================
+    id: 9816606431301541541
+    label: 
+      label: Faceted Search
+
+    icon: 
+      image/icon-css-classes: fa-filter
+
+    layout: 
+      sequence: 110
+      parent-entry: Basics # 10741549490107258119
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 12
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:12:&SESSION.::&DEBUG.::::'
+        page: 12 # Faceted Search with Cards
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Charts =======================================
+    id: 9818082567081713904
+    label: 
+      label: Charts
+
+    icon: 
+      image/icon-css-classes: fa-dial-gauge-chart
+
+    layout: 
+      sequence: 70
+      parent-entry: Advanced # 6160801013569070619
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 11
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:11:&SESSION.::&DEBUG.::::'
+        page: 11 # Gauge Meter Chart Cards
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Basics =======================================
+    id: 10741549490107258119
+    label: 
+      label: Basics
+
+    icon: 
+      image/icon-css-classes: fa-address-card-o
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 3
+      - 12
+      - 13
+      - 18
+      - 20
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:20:&SESSION.::&DEBUG.::::'
+        page: 20 # Basics
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Images and Media =============================
+    id: 10742077044098322286
+    label: 
+      label: Images and Media
+
+    icon: 
+      image/icon-css-classes: fa-image
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:21:&SESSION.::&DEBUG.::::'
+        page: 21 # Images and Media
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Embedded Video ===============================
+    id: 10742115763129482931
+    label: 
+      label: Embedded Video
+
+    icon: 
+      image/icon-css-classes: fa-video-camera
+
+    layout: 
+      sequence: 180
+      parent-entry: Images and Media # 10742077044098322286
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 6
+      - 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:6:&SESSION.::&DEBUG.::::'
+        page: 6 # Embedded Video
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: REST Data Sources ============================
+    id: 10742149530440606624
+    label: 
+      label: REST Data Sources
+
+    icon: 
+      image/icon-css-classes: fa-download
+
+    layout: 
+      sequence: 50
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:6:&SESSION.::&DEBUG.::::'
+        page: 6 # Embedded Video
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: Never
+
+  - # ====== Entry: Card Actions =================================
+    id: 10742180060953670607
+    label: 
+      label: Card Actions
+
+    icon: 
+      image/icon-css-classes: fa-link
+
+    layout: 
+      sequence: 40
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 13
+      - 15
+      - 16
+      - 22
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:22:&SESSION.::&DEBUG.::::'
+        page: 22 # Card Actions
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Full Card Action =============================
+    id: 10742183648086702743
+    label: 
+      label: Full Card Action
+
+    icon: 
+      image/icon-css-classes: fa-clipboard-check
+
+    layout: 
+      sequence: 210
+      parent-entry: Card Actions # 10742180060953670607
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:15:&SESSION.::&DEBUG.::::'
+        page: 15 # Full Card Action
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Conditional Actions ==========================
+    id: 10742184277793708824
+    label: 
+      label: Conditional Actions
+
+    icon: 
+      image/icon-css-classes: fa-workflow
+
+    layout: 
+      sequence: 200
+      parent-entry: Card Actions # 10742180060953670607
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 16
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:16:&SESSION.::&DEBUG.::::'
+        page: 16 # Conditional Actions
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: No Data Found ================================
+    id: 10742188634467729631
+    label: 
+      label: No Data Found
+
+    icon: 
+      image/icon-css-classes: fa-emoji-worry
+
+    layout: 
+      sequence: 80
+      parent-entry: Advanced # 6160801013569070619
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 17
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:17:&SESSION.::&DEBUG.::::'
+        page: 17 # No Data Found Message
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Home =========================================
+    id: 11333776848811582123
+    label: 
+      label: Home
+
+    icon: 
+      image/icon-css-classes: fa-home
+      attributes: title="#LIST_LABEL#"
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:1:&SESSION.::&DEBUG.::::'
+        page: 1 # Home
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: BLOB Column ==================================
+    id: 11333778357447582127
+    label: 
+      label: BLOB Column
+
+    icon: 
+      image/icon-css-classes: fa-image
+
+    layout: 
+      sequence: 160
+      parent-entry: Images and Media # 10742077044098322286
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:2:&SESSION.::&DEBUG.::::'
+        page: 2 # BLOB column
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Image URL ====================================
+    id: 11336982317534490131
+    label: 
+      label: Image URL
+
+    icon: 
+      image/icon-css-classes: fa-camera
+
+    layout: 
+      sequence: 190
+      parent-entry: Images and Media # 10742077044098322286
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 4
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:4:&SESSION.::&DEBUG.::::'
+        page: 4 # Image URL
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Background Image =============================
+    id: 11339592902501311738
+    label: 
+      label: Background Image
+
+    icon: 
+      image/icon-css-classes: fa-film
+
+    layout: 
+      sequence: 150
+      parent-entry: Images and Media # 10742077044098322286
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 7
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:7:&SESSION.::&DEBUG.::::'
+        page: 7 # Background Image
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+- # ====== List: Desktop Navigation Bar ========================
+  id: 11333765399035582070
+  identification: 
+    name: Desktop Navigation Bar
+
+  subscription: 
+    version-number: 1089080073
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Help =========================================
+    id: 6162721653770258888
+    label: 
+      label: Help
+
+    icon: 
+      image/icon-css-classes: fa-question-circle-o
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:23:&SESSION.::&DEBUG.::::'
+        page: 23 # Help
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: &APP_USER. ===================================
+    id: 11333781895219582152
+    label: 
+      label: '&APP_USER.'
+
+    icon: 
+      image/icon-css-classes: fa-user
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: '#'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      2.: has-username
+
+  - # ====== Entry: --- ==========================================
+    id: 11333782451184582152
+    label: 
+      label: '---'
+
+    layout: 
+      sequence: 30
+      parent-entry: '&APP_USER.' # 11333781895219582152
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: separator
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Sign Out =====================================
+    id: 11333782808974582153
+    label: 
+      label: Sign Out
+
+    icon: 
+      image/icon-css-classes: fa-sign-out
+
+    layout: 
+      sequence: 40
+      parent-entry: '&APP_USER.' # 11333781895219582152
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: '&LOGOUT_URL.'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+- # ====== List: Page Navigation ===============================
+  id: 11333780788396582146
+  identification: 
+    name: Page Navigation
+
+  subscription: 
+    version-number: 1089080073
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Cards Demo ===================================
+    id: 11333781265284582149
+    label: 
+      label: Cards Demo
+
+    icon: 
+      image/icon-css-classes: fa-cards
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:2:&APP_SESSION.::&DEBUG.:'
+        page: 2 # BLOB column
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+

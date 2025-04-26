@@ -1,0 +1,25 @@
+---
+- # ====== REST Data Source Server: www-googleapis-com-youtube-v
+  id: 1352489740377360882
+  identification: 
+    name: www-googleapis-com-youtube-v3
+
+  endpoint-url: 
+    url: 'https://www.googleapis.com/youtube/v3/'
+
+  advanced: 
+    static-id: www_googleapis_com_youtube_v3
+    prompt-on-install: false
+
+- # ====== REST Data Source Server: api-themoviedb-org-3-list ==
+  id: 1955948284379183812
+  identification: 
+    name: api-themoviedb-org-3-list
+
+  endpoint-url: 
+    url: 'https://api.themoviedb.org/3/list/'
+
+  advanced: 
+    static-id: api_themoviedb_org_3_list
+    prompt-on-install: false
+

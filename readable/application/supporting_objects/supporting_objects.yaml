@@ -1,0 +1,18 @@
+---
+- # ====== Supporting Object:  =================================
+  id: 10742148063054587001
+  prerequisites: 
+    free-space: 100
+    system-privileges: 
+    - CREATE PROCEDURE
+    - CREATE TABLE
+    - CREATE TRIGGER
+    - CREATE VIEW
+
+  installation: 
+    object-names: 
+    - EBA_DEMO_CARD_DEPT
+    - EBA_DEMO_CARD_EMP
+    - EBA_DEMO_CARD_VEHICLE_SPEED
+    - EBA_DEMO_CARD_RANDOM_IMAGE
+

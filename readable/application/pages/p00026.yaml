@@ -1,0 +1,375 @@
+---
+# ====== Page: test ==========================================
+id: 26
+identification: 
+  name: test
+  alias: TEST
+  title: test
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Unrestricted
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: New =========================================
+  id: 3328065000008383
+  identification: 
+    name: New
+    type: Static Content
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  read-only: 
+    type: Never
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P26_NEW ==================================
+  id: 3328019048008382
+  identification: 
+    name: P26_NEW
+    type: Text Field
+
+  label: 
+    label: New
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 30
+    region: No Parent
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: Show ========================================
+  id: 3328172907008384
+  identification: 
+    button-name: Show
+    label: Show
+
+  layout: 
+    sequence: 10
+    region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: Hide ========================================
+  id: 477908983443783
+  identification: 
+    button-name: Hide
+    label: Hide
+
+  layout: 
+    sequence: 20
+    region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+dynamic-actions: 
+- # ====== Dynamic Action: New =================================
+  id: 3327872006008381
+  identification: 
+    name: New
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: Show # 3328172907008384
+
+  actions: 
+  - # ====== Action: Execute Server-side Code ====================
+    id: 3327823644008380
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: ':P26_NEW := 0;'
+      items-to-submit: 
+      - P26_NEW
+      items-to-return: 
+      - P26_NEW
+      suppress-change-event: false
+
+    execution: 
+      sequence: 10
+      event: New # 3327872006008381
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+  - # ====== Action: Show ========================================
+    id: 477288692443777
+    identification: 
+      action: Show
+
+    affected-elements: 
+      selection-type: Region
+      region: New # 3328065000008383
+
+    execution: 
+      sequence: 30
+      event: New # 3327872006008381
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+- # ====== Dynamic Action: New_2 ===============================
+  id: 477991419443784
+  identification: 
+    name: New_2
+
+  execution: 
+    sequence: 30
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: Hide # 477908983443783
+
+  actions: 
+  - # ====== Action: Hide ========================================
+    id: 478113564443785
+    identification: 
+      action: Hide
+
+    affected-elements: 
+      selection-type: Region
+      region: New # 3328065000008383
+
+    execution: 
+      sequence: 10
+      event: New_2 # 477991419443784
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+- # ====== Dynamic Action: New_3 ===============================
+  id: 478207630443786
+  identification: 
+    name: New_3
+
+  execution: 
+    sequence: 40
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Change
+    selection-type: Item(s)
+    item(s): 
+    - P26_NEW
+
+  actions: 
+  - # ====== Action: Show ========================================
+    id: 478314735443787
+    identification: 
+      action: Show
+
+    affected-elements: 
+      selection-type: Region
+      region: New # 3328065000008383
+
+    execution: 
+      sequence: 10
+      event: New_3 # 478207630443786
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+    client-side-condition: 
+      type: Item = Value
+      item: P26_NEW
+      value: 500
+
+- # ====== Dynamic Action: New_4 ===============================
+  id: 478450711443788
+  identification: 
+    name: New_4
+
+  execution: 
+    sequence: 50
+    event-scope: Static
+
+  when: 
+    event: Page Load
+
+  actions: 
+  - # ====== Action: Hide ========================================
+    id: 478480865443789
+    identification: 
+      action: Hide
+
+    affected-elements: 
+      selection-type: Region
+      region: New # 3328065000008383
+
+    execution: 
+      sequence: 10
+      event: New_4 # 478450711443788
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+- # ====== Dynamic Action: New_1 ===============================
+  id: 478607674443790
+  identification: 
+    name: New_1
+
+  execution: 
+    sequence: 60
+    event-scope: Static
+
+  when: 
+    event: Page Load
+
+  actions: 
+  - # ====== Action: Hide ========================================
+    id: 478666103443791
+    identification: 
+      action: Hide
+
+    affected-elements: 
+      selection-type: Region
+      region: New # 3328065000008383
+
+    execution: 
+      sequence: 10
+      event: New_1 # 478607674443790
+      fire-when-event-result-is: True
+      fire-on-initialization: true
+
+    client-side-condition: 
+      type: Item is null
+      item: P26_NEW
+

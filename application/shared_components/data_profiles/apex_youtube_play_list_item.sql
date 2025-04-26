@@ -1,0 +1,151 @@
+prompt --application/shared_components/data_profiles/apex_youtube_play_list_item
+begin
+--   Manifest
+--     DATA PROFILE: APEX Youtube Play List Item
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.3'
+,p_default_workspace_id=>20
+,p_default_application_id=>7920
+,p_default_id_offset=>8529837867671528
+,p_default_owner=>'ORACLE'
+);
+wwv_flow_imp_shared.create_data_profile(
+ p_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'APEX Youtube Play List Item'
+,p_format=>'JSON'
+,p_row_selector=>'items'
+,p_use_raw_json_selectors=>false
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742105508779473629)
+,p_data_profile_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'ID'
+,p_sequence=>1
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'id'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742105862537473629)
+,p_data_profile_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'ETAG'
+,p_sequence=>2
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'etag'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742106140151473629)
+,p_data_profile_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'KIND'
+,p_sequence=>3
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'kind'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742106418365473629)
+,p_data_profile_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'TITLE'
+,p_sequence=>4
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'snippet.title'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742107042241473629)
+,p_data_profile_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'CHANNELID'
+,p_sequence=>6
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'snippet.channelId'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742107365290473630)
+,p_data_profile_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'PLAYLISTID'
+,p_sequence=>7
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'snippet.playlistId'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742107958674473630)
+,p_data_profile_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'VIDEOID'
+,p_sequence=>9
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'snippet.resourceId.videoId'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742108219199473630)
+,p_data_profile_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'URL'
+,p_sequence=>10
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'snippet.thumbnails.high.url'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742108504717473630)
+,p_data_profile_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'WIDTH'
+,p_sequence=>11
+,p_data_type=>'NUMBER'
+,p_has_time_zone=>false
+,p_selector=>'snippet.thumbnails.high.width'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742108858681473630)
+,p_data_profile_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'HEIGHT'
+,p_sequence=>12
+,p_data_type=>'NUMBER'
+,p_has_time_zone=>false
+,p_selector=>'snippet.thumbnails.high.height'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742112729191473634)
+,p_data_profile_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'DESCRIPTION'
+,p_sequence=>25
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'snippet.description'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742113044145473634)
+,p_data_profile_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'PUBLISHEDAT'
+,p_sequence=>26
+,p_data_type=>'TIMESTAMP WITH TIME ZONE'
+,p_format_mask=>'YYYY"-"MM"-"DD"T"HH24":"MI:SSTZR'
+,p_has_time_zone=>true
+,p_selector=>'snippet.publishedAt'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(10742105251350473628)
+,p_data_profile_id=>wwv_flow_imp.id(10742104455972473628)
+,p_name=>'VIDEOPUBLISHEDAT'
+,p_sequence=>29
+,p_data_type=>'TIMESTAMP WITH TIME ZONE'
+,p_format_mask=>'YYYY"-"MM"-"DD"T"HH24":"MI:SSTZR'
+,p_has_time_zone=>true
+,p_selector=>'contentDetails.videoPublishedAt'
+);
+wwv_flow_imp.component_end;
+end;
+/

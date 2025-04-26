@@ -1,0 +1,160 @@
+prompt --application/shared_components/data_profiles/movie_database
+begin
+--   Manifest
+--     DATA PROFILE: Movie Database
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.3'
+,p_default_workspace_id=>20
+,p_default_application_id=>7920
+,p_default_id_offset=>8529837867671528
+,p_default_owner=>'ORACLE'
+);
+wwv_flow_imp_shared.create_data_profile(
+ p_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'Movie Database'
+,p_format=>'JSON'
+,p_row_selector=>'items'
+,p_use_raw_json_selectors=>false
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341497116416297653)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'ID'
+,p_sequence=>1
+,p_is_primary_key=>true
+,p_data_type=>'NUMBER'
+,p_has_time_zone=>false
+,p_selector=>'id'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341497382548297653)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'ADULT'
+,p_sequence=>2
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'adult'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341497724892297653)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'TITLE'
+,p_sequence=>3
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'title'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341498063784297655)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'VIDEO'
+,p_sequence=>4
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'video'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341498312030297655)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'OVERVIEW'
+,p_sequence=>5
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'overview'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341498629541297655)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'MEDIA_TYPE'
+,p_sequence=>6
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'media_type'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341498882548297655)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'POPULARITY'
+,p_sequence=>7
+,p_data_type=>'NUMBER'
+,p_has_time_zone=>false
+,p_selector=>'popularity'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341499200505297655)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'VOTE_COUNT'
+,p_sequence=>8
+,p_data_type=>'NUMBER'
+,p_has_time_zone=>false
+,p_selector=>'vote_count'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341499547804297655)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'POSTER_PATH'
+,p_sequence=>9
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'poster_path'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341499797005297656)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'RELEASE_DATE'
+,p_sequence=>10
+,p_data_type=>'DATE'
+,p_format_mask=>'YYYY"-"MM"-"DD'
+,p_has_time_zone=>false
+,p_selector=>'release_date'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341500102325297656)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'VOTE_AVERAGE'
+,p_sequence=>11
+,p_data_type=>'NUMBER'
+,p_has_time_zone=>false
+,p_selector=>'vote_average'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341500468757297656)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'BACKDROP_PATH'
+,p_sequence=>12
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'backdrop_path'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341500673282297656)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'ORIGINAL_TITLE'
+,p_sequence=>13
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'original_title'
+);
+wwv_flow_imp_shared.create_data_profile_col(
+ p_id=>wwv_flow_imp.id(11341501013854297656)
+,p_data_profile_id=>wwv_flow_imp.id(11341496870940297652)
+,p_name=>'ORIGINAL_LANGUAGE'
+,p_sequence=>14
+,p_data_type=>'VARCHAR2'
+,p_max_length=>4000
+,p_has_time_zone=>false
+,p_selector=>'original_language'
+);
+wwv_flow_imp.component_end;
+end;
+/

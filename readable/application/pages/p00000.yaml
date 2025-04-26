@@ -1,0 +1,37 @@
+---
+# ====== Page: Global Page - Desktop =========================
+id: 0
+identification: 
+  name: Global Page - Desktop
+
+dynamic-actions: 
+- # ====== Dynamic Action: Title the navigation ================
+  id: 6145181519837272687
+  identification: 
+    name: Title the navigation
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+
+  when: 
+    event: Page Load
+
+  actions: 
+  - # ====== Action: Execute JavaScript Code =====================
+    id: 6145181636549272688
+    identification: 
+      action: Execute JavaScript Code
+
+    settings: 
+      code: |
+        $('#t_TreeNav li div.a-TreeView-content').each(function() {
+           $( this ).html("<span title=" + '"' + $( this ).text() + '"' + $( this ).html().substring(5, $( this ).html().length));
+        });
+
+    execution: 
+      sequence: 10
+      event: Title the navigation # 6145181519837272687
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+

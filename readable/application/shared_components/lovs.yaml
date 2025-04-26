@@ -1,0 +1,59 @@
+---
+- # ====== List of Values: EMP.MGR =============================
+  id: 10742182068541684675
+  identification: 
+    name: EMP.MGR
+
+  subscription: 
+    version-number: 1089080073
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: EBA_DEMO_CARD_EMP
+
+  column-mapping: 
+    return: EMPNO
+    display: ENAME
+    default-sort: ENAME
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: DEPT.DNAME ==========================
+  id: 10742182293259688219
+  identification: 
+    name: DEPT.DNAME
+
+  subscription: 
+    version-number: 1089080073
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: EBA_DEMO_CARD_DEPT
+
+  column-mapping: 
+    return: DEPTNO
+    display: DNAME
+    default-sort: Use Order By from Query
+
+- # ====== List of Values: LOGIN_REMEMBER_USERNAME =============
+  id: 11333772056426582110
+  identification: 
+    name: LOGIN_REMEMBER_USERNAME
+
+  subscription: 
+    version-number: 1089080073
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Remember username ============================
+    id: 11333772380041582111
+    entry: 
+      sequence: 10
+      display: Remember username
+      return: Y
+

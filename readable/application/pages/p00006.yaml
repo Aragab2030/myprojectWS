@@ -1,0 +1,285 @@
+---
+# ====== Page: Embedded Video ================================
+id: 6
+identification: 
+  name: Embedded Video
+  alias: MOVIES
+  title: '&APP_NAME. - Embedded Video'
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: About this page =============================
+  id: 6035140894522361201
+  identification: 
+    name: About this page
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>Cards regions can be sourced by REST Data Sources.  This page uses a <a href="https://developers.google.com/youtube/v3/docs/playlists" title="Playlists Resource" target="_blank">Playlists</a> REST resource in a <a href="https://developers.google.com/youtube/v3/getting-started" title="YouTube Data API" target="_blank">YouTube Data API</a> to display the &PRODUCT_NAME. YouTube channel playlists.</p>
+      
+      <p>This page uses the <strong>Cards Media Advanced Formatting</strong> to add an HTML <code>&lt;iframe&gt;</code> tag which embeds a player inline. Embedding videos can add extra weight to your page.  Click <strong>View All Videos</strong> to see all of the videos in this playlist and view alternative ways of displaying Cards regions with video information.</p>
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Collapsible
+    template-options: 
+    - '#DEFAULT#'
+    - is-collapsed
+    - t-Region--scrollBody
+    icon: fa-video-camera
+    render-components: Below Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Breadcrumb ==================================
+  id: 6147570473839155485
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11333626549511581887
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: APEX YouTube Channel ========================
+  id: 10742116173401482932
+  identification: 
+    name: APEX YouTube Channel
+    type: Cards
+
+  source: 
+    location: REST Source
+    rest-source: APEX YouTube Playlists # 10742102248889473610
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container
+    template-options: 
+    - '#DEFAULT#'
+    - t-CardsRegion--styleB
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  parameters: 
+  - # ====== Parameter: channelId ================================
+    id: 6060039432767992374
+    identification: 
+      name: channelId # 10742102846511473623
+
+    operation: 
+      http-method: All
+      database-operation: All
+
+    parameter: 
+      direction: In
+      data-type: String
+
+    value: 
+      type: Static Value
+      static-value: UCEpIXFjcQIztReQNLymvYrQ
+
+  - # ====== Parameter: maxResults ===============================
+    id: 6060039532519992375
+    identification: 
+      name: maxResults # 10742103597819473627
+
+    operation: 
+      http-method: All
+      database-operation: All
+
+    parameter: 
+      direction: In
+      data-type: String
+
+    value: 
+      type: Static Value
+      static-value: 25
+
+  - # ====== Parameter: part =====================================
+    id: 6060039636701992376
+    identification: 
+      name: part # 10742104014015473627
+
+    operation: 
+      http-method: All
+      database-operation: All
+
+    parameter: 
+      direction: In
+      data-type: String
+
+    value: 
+      type: Static Value
+      static-value: snippet,contentDetails,player
+
+  attributes: 
+    id: 10742118673128482936
+    appearance: 
+      layout: Grid
+      grid-columns: 3 Columns
+
+    title: 
+      advanced-formatting: false
+      column: TITLE
+
+    subtitle: 
+      advanced-formatting: true
+      html-expression: |
+        Total Videos: &ITEMCOUNT. <br />
+        Published: &PUBLISHEDAT.
+
+    body: 
+      advanced-formatting: false
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: No Icon
+
+    media: 
+      advanced-formatting: true
+      html-expression: '<iframe src="https://www.youtube.com/embed/playlist?list=&ID." title="&TITLE." allowfullscreen></iframe>'
+      position: First
+      css-classes: 
+      - a-CardView-media--cover
+      - a-CardView-media--widescreen
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Page
+      show-total-count: false
+      cards-per-page: 3
+
+    actions: 
+    - # ====== Action: View All Videos =============================
+      id: 10737658857392281116
+      identification: 
+        type: Button
+        label: View All Videos
+
+      layout: 
+        position: Primary
+        sequence: 10
+
+      link: 
+        type: Redirect to Page in this Application
+        target: 
+          url: 'f?p=&APP_ID.:10:&SESSION.::&DEBUG.:10:P10_ID:&ID.'
+          page: 10 # APEX Play List
+          clear-cache: 10
+          values: 
+            p10_id: '&ID.'
+
+      appearance: 
+        display-type: Text with Icon
+        icon: fa-file-video-o
+        hot: true
+

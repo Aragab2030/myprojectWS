@@ -1,0 +1,292 @@
+---
+# ====== Page: BLOB Column as URL ============================
+id: 5
+identification: 
+  name: BLOB Column as URL
+  alias: BLOB-COLUMN-AS-URL
+  title: '&APP_NAME. - BLOB Column as URL'
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Breadcrumb ==================================
+  id: 6147570237521155483
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 11333626549511581887
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: About this page =============================
+  id: 7418782345631739396
+  identification: 
+    name: About this page
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>Sometimes, you want to control and customize the display of a BLOB column using an HTML <code>&lt;img&gt;</code> tag.  Since BLOB columns cannot be referenced by column substitutions (e.g. #COLUMN_NAME#), you need to get the BLOB column value as a URL.  Once you have the URL, you can format the display of the image using an HTML <code>&lt;img&gt;</code> tag.  To get the BLOB as a URL, you have these 3 options:</p>
+      
+      <ol>
+          <li>Define a Media Resource RESTful Service</li>
+          <li>Define an On-Demand Page or an Application Process to display an Image from a BLOB column</li>
+          <li>Use the <a href="https://docs.oracle.com/en/database/oracle/application-express/20.2/aeapi/GET_BLOB_FILE_SRC-Function.html#GUID-21F2D33A-A616-48B5-BAF5-A85C0EDC998F" target="_blank">APEX_UTIL.GET_BLOB_FILE_SRC</a> API.  Bear in mind, this API requires a reference to a valid File Browse page item that exists somewhere in the app.</li>
+      </ol>
+      
+      <p>A Media Resource RESTful Service is the preferred implementation method, but to make this app self contained, this page uses method #2 (above).</p>
+      
+      <ul>
+          <li>Page item <strong>P5_EMPNO</strong> hidden item added</li>
+          <li>Ajax Callback <strong>GETIMAGE</strong> calls <em>eba_demo_card_pkg.get_profile_image</em></li>
+          <li>Procedure <em>eba_demo_card_pkg.get_profile_image</em> initiates BLOB column download as inline</li>
+          <li>The href value of the <code>&lt;img&gt;</code> tag in the Cards Media HTML Expression calls the <strong>GETIMAGE</strong> ajax process while also passing the EMPNO column value</li>
+      </ul>
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Collapsible
+    template-options: 
+    - '#DEFAULT#'
+    - is-collapsed
+    - t-Region--scrollBody
+    icon: fa-file-image-o
+    render-components: Below Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Media Image =================================
+  id: 12025601052714325332
+  identification: 
+    name: Media Image
+    type: Cards
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select EMPNO,
+             ENAME,
+             JOB,
+             MGR,
+             HIREDATE,
+             SAL,
+             COMM,
+             DEPTNO,
+             apex_page.get_url(
+                 p_request     => 'APPLICATION_PROCESS=GETIMAGE',
+                 p_clear_cache => 5,
+                 p_items       => 'P5_EMPNO',
+                 p_values      => EMPNO ) BLOB_URL,
+             IMAGE_LAST_UPDATE,
+             TAGS
+        from EBA_DEMO_CARD_EMP
+
+  order-by: 
+    type: None
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container
+    template-options: 
+    - '#DEFAULT#'
+    - t-CardsRegion--styleB
+    css-classes: 
+    - test
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 6060155943166757907
+    appearance: 
+      layout: Grid
+      grid-columns: 3 Columns
+
+    card: 
+      primary-key-column-1: EMPNO
+
+    title: 
+      advanced-formatting: false
+      column: ENAME
+
+    subtitle: 
+      advanced-formatting: false
+      column: JOB
+
+    body: 
+      advanced-formatting: false
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: No Icon
+
+    media: 
+      advanced-formatting: true
+      html-expression: '<img src="&BLOB_URL!ATTR." alt="&ENAME!ATTR." style="width:128px;height:128px;">'
+      position: First
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-count: true
+
+page-items: 
+- # ====== Page Item: P5_EMPNO =================================
+  id: 6060040045055992380
+  identification: 
+    name: P5_EMPNO
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 10
+    region: Media Image # 12025601052714325332
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Checksum Required - Session Level
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+processes: 
+- # ====== Process: GETIMAGE ===================================
+  id: 6060039921531992379
+  identification: 
+    name: GETIMAGE
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: 'eba_demo_card_pkg.get_profile_image( p_empno => :P5_EMPNO );'
+
+  execution: 
+    sequence: 10
+    point: Ajax Callback
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    error-message: Unable to get employee profile image.
+

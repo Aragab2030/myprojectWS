@@ -1,0 +1,296 @@
+---
+# ====== Application: Sample Cards ===========================
+id: 7920
+identification: 
+  name: Sample Cards
+  alias: SAMPLE-CARDS
+  version: 24.1.0
+  application-group: Sample Apps # 9798008703383071
+
+row-search: 
+  tokenize: false
+  text-query-function: None
+
+availability: 
+  status: Available with Developer Toolbar
+  build-status: Run and Build Application
+
+error-handling: 
+  default-display-location: Inline with Field and in Notification
+
+report-printing: 
+  type: Use Instance Settings
+
+advanced: 
+  friendly-urls: true
+  allow-feedback: false
+  logging: true
+  debugging: true
+  compatibility-mode: 21.2 to 24.1
+  accessible-read-only-items: true
+  pass-ecid: N
+  copyright-banner: |
+    Name: #APP_NAME#
+    Copyright (c) 2012, #YEAR# Oracle and/or its affiliates.
+    Licensed under the Universal Permissive License v 1.0
+    as shown at https://oss.oracle.com/licenses/upl/
+
+authentication: 
+  public-user: APEX_PUBLIC_USER
+  authentication-scheme: Application Express Accounts # 11333626210504581886
+
+authorization: 
+  source-for-role-or-group-schemes: Access Control User Role Assignments
+
+session-management: 
+  rejoin-sessions: Enabled for Public Sessions
+
+session-state-protection: 
+  enabled: true
+
+security: 
+  deep-linking: Enabled
+  browser-cache: Disabled
+  embed-in-frames: Allow from same origin
+  referrer-policy: strict-origin
+  html-escaping-mode: Extended
+
+database-session: 
+  parsing-schema: MOJ
+
+globalization: 
+  primary-language: English (en)
+  document-direction: Left-To-Right
+  language-derived-from: Application Primary Language
+  automatic-time-zone: false
+  automatic-csv-encoding: true
+
+application-format-masks: 
+  date: DS
+  timestamp: DS
+  timestamp-time-zone: DS
+
+character-value-comparison: 
+  behavior: Database session NLS setting (default)
+
+logo: 
+  type: Text
+  text: Sample Cards
+
+progressive-web-app: 
+  enable: false
+
+navigation: 
+  home-url: 
+    url: 'f?p=&APP_ID.:1:&SESSION.'
+    page: 1 # Home
+
+  login-url: 
+    url: 'f?p=&APP_ID.:LOGIN:&APP_SESSION.::&DEBUG.:::'
+    page: LOGIN
+
+navigation-menu: 
+  list-template: Side Navigation Menu
+  template-options: 
+  - '#DEFAULT#'
+  - js-defaultCollapsed
+  - js-navCollapsed--hidden
+  - t-TreeNav--styleA
+  list-position: Side
+  list: Desktop Navigation Menu # 11333626991482581890
+
+navigation-bar: 
+  implementation: List
+  list: Desktop Navigation Bar # 11333765399035582070
+  list-template: Navigation Bar
+  template-options: 
+  - '#DEFAULT#'
+
+javascript: 
+  include-jquery-migrate: false
+
+css: 
+  file-urls: 
+  - '#APP_IMAGES#app-icon.css?version=#APP_VERSION#'
+
+attributes: 
+  theme: Universal Theme # 42
+  global-page: 0
+  enable-end-users-to-choose-theme-style: false
+  add-"built-with-apex"-to-footer: true
+  auto-dismiss-success-messages: false
+
+subscription: 
+  version-number: 491007752
+
+substitutions: 
+- # ====== Substitution: APP_NAME ==============================
+  id: 8529837867671527
+  identification: 
+    name: APP_NAME
+
+  value: 
+    static-value: Sample Cards
+
+- # ====== Substitution: JET_VISUALIZATION_URL =================
+  id: 8529837867671526
+  identification: 
+    name: JET_VISUALIZATION_URL
+
+  value: 
+    static-value: 'https://www.oracle.com/webfolder/technetwork/jet/jetCookbook.html?component=home&demo=rootVisualizations'
+
+- # ====== Substitution: MOVIEDB_API ===========================
+  id: 8529837867671525
+  identification: 
+    name: MOVIEDB_API
+
+  value: 
+    static-value: 'https://www.themoviedb.org/documentation/api'
+
+- # ====== Substitution: GOOGLE_API ============================
+  id: 8529837867671524
+  identification: 
+    name: GOOGLE_API
+
+  value: 
+    static-value: 'https://developers.google.com/youtube/v3/docs'
+
+- # ====== Substitution: PRODUCT_NAME ==========================
+  id: 8529837867671523
+  identification: 
+    name: PRODUCT_NAME
+
+  value: 
+    static-value: Oracle APEX
+
+component-settings: 
+- # ====== Component Setting: NATIVE_BOSS ======================
+  id: 6825025555427325
+  identification: 
+    name: NATIVE_BOSS
+    type: REST Data Source
+
+  subscription: 
+    version-number: 472097231
+
+- # ====== Component Setting: NATIVE_OPEN_AI_ASSISTANT =========
+  id: 1593117283493140
+  identification: 
+    name: NATIVE_OPEN_AI_ASSISTANT
+    type: Dynamic Action
+
+  subscription: 
+    version-number: 37167665078883
+
+- # ====== Component Setting: NATIVE_SELECT_MANY ===============
+  id: 1593539840493140
+  identification: 
+    name: NATIVE_SELECT_MANY
+    type: Item
+
+  subscription: 
+    version-number: 37167665078883
+
+- # ====== Component Setting: NATIVE_GEOCODING =================
+  id: 1614034095334812
+  identification: 
+    name: NATIVE_GEOCODING
+    type: Process
+
+  settings: 
+    attribute-1: RELAX_HOUSE_NUMBER
+
+  subscription: 
+    version-number: 155471871
+
+- # ====== Component Setting: NATIVE_ADFBC =====================
+  id: 606825634017782522
+  identification: 
+    name: NATIVE_ADFBC
+    type: REST Data Source
+
+  subscription: 
+    version-number: 37166093908906
+
+- # ====== Component Setting: NATIVE_GEOCODED_ADDRESS ==========
+  id: 5468177903425903269
+  identification: 
+    name: NATIVE_GEOCODED_ADDRESS
+    type: Item
+
+  subscription: 
+    version-number: 37166093908918
+
+- # ====== Component Setting: NATIVE_MAP_REGION ================
+  id: 5489772940756767770
+  identification: 
+    name: NATIVE_MAP_REGION
+    type: Region
+
+  subscription: 
+    version-number: 37166093908918
+
+- # ====== Component Setting: NATIVE_DATE_PICKER_APEX ==========
+  id: 5491547238424492832
+  identification: 
+    name: NATIVE_DATE_PICKER_APEX
+    type: Item
+
+  subscription: 
+    version-number: 37166093908918
+
+- # ====== Component Setting: NATIVE_COLOR_PICKER ==============
+  id: 11333624113133581884
+  identification: 
+    name: NATIVE_COLOR_PICKER
+    type: Item
+
+  subscription: 
+    version-number: 37166093908918
+
+- # ====== Component Setting: NATIVE_DISPLAY_SELECTOR ==========
+  id: 11333624430167581885
+  identification: 
+    name: NATIVE_DISPLAY_SELECTOR
+    type: Region
+
+  subscription: 
+    version-number: 37166093908918
+
+- # ====== Component Setting: NATIVE_SINGLE_CHECKBOX ===========
+  id: 11333624686252581885
+  identification: 
+    name: NATIVE_SINGLE_CHECKBOX
+    type: Item
+
+  subscription: 
+    version-number: 37166093908918
+
+- # ====== Component Setting: NATIVE_IR ========================
+  id: 11333625365897581885
+  identification: 
+    name: NATIVE_IR
+    type: Region
+
+  subscription: 
+    version-number: 37166093908918
+
+- # ====== Component Setting: NATIVE_YES_NO ====================
+  id: 11333625667019581885
+  identification: 
+    name: NATIVE_YES_NO
+    type: Item
+
+  subscription: 
+    version-number: 37166093908918
+
+- # ====== Component Setting: NATIVE_STAR_RATING ===============
+  id: 11333625915949581886
+  identification: 
+    name: NATIVE_STAR_RATING
+    type: Item
+
+  subscription: 
+    version-number: 37166093908918
+

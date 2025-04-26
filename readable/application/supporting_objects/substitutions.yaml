@@ -1,0 +1,41 @@
+---
+- # ====== Substitution: APP_NAME ==============================
+  id: 8529837867671527
+  identification: 
+    name: APP_NAME
+
+  installation: 
+    prompt-substitution: false
+
+- # ====== Substitution: JET_VISUALIZATION_URL =================
+  id: 8529837867671526
+  identification: 
+    name: JET_VISUALIZATION_URL
+
+  installation: 
+    prompt-substitution: false
+
+- # ====== Substitution: MOVIEDB_API ===========================
+  id: 8529837867671525
+  identification: 
+    name: MOVIEDB_API
+
+  installation: 
+    prompt-substitution: false
+
+- # ====== Substitution: GOOGLE_API ============================
+  id: 8529837867671524
+  identification: 
+    name: GOOGLE_API
+
+  installation: 
+    prompt-substitution: false
+
+- # ====== Substitution: PRODUCT_NAME ==========================
+  id: 8529837867671523
+  identification: 
+    name: PRODUCT_NAME
+
+  installation: 
+    prompt-substitution: false
+
