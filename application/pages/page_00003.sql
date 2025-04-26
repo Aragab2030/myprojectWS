@@ -15,7 +15,7 @@ wwv_flow_imp_page.create_page(
  p_id=>3
 ,p_name=>'Basic Cards'
 ,p_alias=>'BASIC-CARDS'
-,p_step_title=>'&APP_NAME. - Styles'
+,p_step_title=>'&APP_NAME. - Styles Ahmed'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
 ,p_protection_level=>'C'
