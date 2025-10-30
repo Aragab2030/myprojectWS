@@ -1,0 +1,154 @@
+================================================================================
+ORACLE APEX PERFORMANCE OPTIMIZATION TOOLKIT - FILE MANIFEST
+================================================================================
+Generated: 2025-10-30
+Total Files: 16 (excluding .gitkeep and .gitignore)
+Total Lines: ~6,800 lines of code and documentation
+================================================================================
+
+ROOT DIRECTORY
+================================================================================
+README.md                       - Main toolkit overview and quick start
+QUICK_START.md                  - 15-minute quick start guide
+PERFORMANCE_ANALYSIS.md         - Comprehensive 6-phase optimization guide
+SUMMARY.md                      - Complete toolkit summary and metrics
+.gitignore                      - Git exclusions for output files
+
+DIAGNOSTICS DIRECTORY (/diagnostics)
+================================================================================
+db_performance_check.sql        - Database performance diagnostics (17 sections)
+                                  • Database config and version
+                                  • Performance metrics (CPU, cache, waits)
+                                  • Top SQL by elapsed time and CPU
+                                  • Session and wait event analysis
+                                  • Statistics freshness check
+                                  • Missing index opportunities
+                                  • Segment and tablespace analysis
+                                  • Blocking sessions and locks
+                                  
+apex_metadata_check.sql         - APEX application structure analysis (15 sections)
+                                  • Large application detection
+                                  • Complex page identification
+                                  • Dynamic Action analysis
+                                  • SQL query complexity check
+                                  • LOV optimization opportunities
+                                  • Static file size analysis
+                                  • Deprecated feature detection
+                                  
+session_diagnostics.sql         - Real-time session diagnostics (12 sections)
+                                  • Active session monitoring
+                                  • High PGA/memory consumers
+                                  • Long-running query detection
+                                  • Blocking session tree
+                                  • Wait event analysis
+                                  • Connection pool monitoring
+                                  
+automated_monitoring.sh         - Continuous system monitoring (executable)
+                                  • System resources (CPU, memory, disk, I/O)
+                                  • Tomcat/JVM monitoring
+                                  • ORDS health checks
+                                  • Database session monitoring
+                                  • Network connection analysis
+                                  • Automated summaries
+                                  
+README.md                       - Diagnostic scripts documentation
+
+CONFIG-TEMPLATES DIRECTORY (/config-templates)
+================================================================================
+ords-defaults.xml               - Optimized ORDS configuration template
+                                  • Connection pool sizing (10-200)
+                                  • Statement caching configuration
+                                  • Request handling and timeouts
+                                  • HTTP compression settings
+                                  • APEX-specific optimizations
+                                  
+tomcat-server.xml               - Optimized Tomcat connector template
+                                  • HTTP/1.1 connector optimization
+                                  • Thread pool configuration
+                                  • HTTP compression
+                                  • SSL/TLS connector template
+                                  • Static resource caching
+                                  
+jvm-tuning.sh                   - Comprehensive JVM tuning script (executable)
+                                  • Heap memory configuration (4-8 GB default)
+                                  • G1GC garbage collector setup
+                                  • Performance optimizations
+                                  • GC logging configuration
+                                  • ORDS-specific JDBC settings
+                                  
+README.md                       - Configuration templates documentation
+
+OPTIMIZATIONS DIRECTORY (/optimizations)
+================================================================================
+apex_performance_optimization.sql - APEX-specific optimizations
+                                  • Statistics gathering automation
+                                  • Result cache configuration
+                                  • Session state cleanup
+                                  • Workspace preferences
+                                  • Invalid object compilation
+                                  • Auto statistics job creation
+                                  
+recommended_indexes.sql         - Performance-enhancing index creation
+                                  • Activity log indexes
+                                  • Session state indexes
+                                  • Collection performance indexes
+                                  • Page definition indexes
+                                  • Index monitoring setup
+                                  
+apex_page_optimization_guide.md - Detailed page optimization guide
+                                  • Page complexity reduction
+                                  • Dynamic Action optimization
+                                  • Query optimization strategies
+                                  • Session state management
+                                  • LOV optimization
+                                  • Static file optimization
+                                  • Caching implementation
+                                  • Performance budgets
+
+OUTPUT DIRECTORIES
+================================================================================
+/reports                        - Store diagnostic script output here
+/monitoring_output              - Automated monitoring data storage
+
+================================================================================
+USAGE SUMMARY
+================================================================================
+
+PHASE 1 - QUICK DIAGNOSTICS (15 minutes):
+  1. cd diagnostics
+  2. sqlplus user/pass@db @db_performance_check.sql > ../reports/db_check.txt
+  3. sqlplus user/pass@db @apex_metadata_check.sql > ../reports/apex_check.txt
+  4. Review output files
+
+PHASE 2 - APPLY OPTIMIZATIONS (30 minutes):
+  1. Update ORDS: cp config-templates/ords-defaults.xml $ORDS_CONFIG/
+  2. Update Tomcat: cp config-templates/jvm-tuning.sh $CATALINA_HOME/bin/setenv.sh
+  3. Run optimizations: sqlplus user/pass@db @optimizations/apex_performance_optimization.sql
+  4. Restart services
+
+PHASE 3 - CONTINUOUS MONITORING:
+  1. ./diagnostics/automated_monitoring.sh -i 300 -o ./monitoring_output &
+  2. Monitor: tail -f monitoring_output/monitoring_*.log
+
+================================================================================
+EXPECTED RESULTS
+================================================================================
+• 30-50% reduction in Page Designer load times
+• 20-40% improvement in database query response times
+• 60-80% reduction in bandwidth usage (with compression)
+• Elimination of OutOfMemoryErrors
+• Better overall system stability and performance
+
+================================================================================
+SUPPORT & DOCUMENTATION
+================================================================================
+Primary Guide:     QUICK_START.md (start here!)
+Detailed Analysis: PERFORMANCE_ANALYSIS.md
+Diagnostics Help:  diagnostics/README.md
+Config Help:       config-templates/README.md
+Page Optimization: optimizations/apex_page_optimization_guide.md
+Complete Summary:  SUMMARY.md (this covers everything)
+
+================================================================================
+END OF FILE MANIFEST
+================================================================================

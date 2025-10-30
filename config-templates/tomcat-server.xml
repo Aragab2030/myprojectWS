@@ -1,0 +1,252 @@
+<!--
+  ============================================================================
+  Apache Tomcat Server Configuration - Optimized for ORDS/APEX
+  ============================================================================
+  File: server.xml
+  Location: $CATALINA_HOME/conf/
+  
+  This is a template focusing on performance optimization.
+  Merge these settings with your existing server.xml
+  ============================================================================
+-->
+
+<Server port="8005" shutdown="SHUTDOWN">
+  
+  <!-- ========== Global JNDI Resources ========== -->
+  <GlobalNamingResources>
+    <Resource name="UserDatabase" auth="Container"
+              type="org.apache.catalina.UserDatabase"
+              description="User database that can be updated and saved"
+              factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+              pathname="conf/tomcat-users.xml" />
+  </GlobalNamingResources>
+
+  <!-- ========== Tomcat Service ========== -->
+  <Service name="Catalina">
+
+    <!--
+      ========== HTTP/1.1 Connector - Optimized ==========
+      
+      Key Performance Settings:
+      - maxThreads: Maximum simultaneous requests
+      - minSpareThreads: Minimum threads to keep alive
+      - acceptCount: Queue size when all threads busy
+      - compression: Enable response compression
+      - maxConnections: Maximum simultaneous connections
+    -->
+    <Connector port="8080" 
+               protocol="org.apache.coyote.http11.Http11NioProtocol"
+               connectionTimeout="20000"
+               redirectPort="8443"
+               
+               <!-- Thread Pool Configuration -->
+               maxThreads="200"
+               minSpareThreads="25"
+               acceptCount="100"
+               
+               <!-- Connection Management -->
+               maxConnections="8192"
+               maxHttpHeaderSize="8192"
+               
+               <!-- Performance Tuning -->
+               enableLookups="false"
+               disableUploadTimeout="true"
+               
+               <!-- Compression (Performance Boost) -->
+               compression="on"
+               compressionMinSize="1024"
+               compressibleMimeType="text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json,application/xml"
+               
+               <!-- Keep-Alive Settings -->
+               maxKeepAliveRequests="100"
+               keepAliveTimeout="60000"
+               
+               <!-- URI Encoding -->
+               URIEncoding="UTF-8"
+               
+               <!-- Maximum POST size (20MB for APEX) -->
+               maxPostSize="20971520"
+               
+               <!-- Socket Buffer Size -->
+               socket.rxBufSize="65536"
+               socket.txBufSize="65536"
+               socket.appReadBufSize="8192"
+               socket.appWriteBufSize="8192"
+               
+               <!-- Performance Options -->
+               useSendfile="true"
+               processorCache="200"
+               />
+
+    <!--
+      ========== HTTPS/SSL Connector - Optimized ==========
+      
+      Uncomment and configure for SSL/TLS
+      Update keystoreFile and keystorePass with your values
+    -->
+    <!--
+    <Connector port="8443" 
+               protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="200" 
+               minSpareThreads="25"
+               acceptCount="100"
+               maxConnections="8192"
+               
+               SSLEnabled="true"
+               scheme="https" 
+               secure="true"
+               
+               keystoreFile="/path/to/keystore.jks"
+               keystorePass="changeit"
+               keystoreType="JKS"
+               
+               clientAuth="false" 
+               sslProtocol="TLS"
+               
+               TLS 1.2/1.3 Only (More Secure)
+               sslEnabledProtocols="TLSv1.2,TLSv1.3"
+               
+               Optimized Cipher Suite (Balance of Security and Performance)
+               ciphers="TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+               
+               Compression
+               compression="on"
+               compressionMinSize="1024"
+               compressibleMimeType="text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json"
+               
+               maxPostSize="20971520"
+               URIEncoding="UTF-8"
+               />
+    -->
+
+    <!--
+      ========== HTTP/2 Connector ==========
+      
+      Requires Tomcat 9.0+ and Java 9+
+      Significantly improves performance for modern browsers
+    -->
+    <!--
+    <Connector port="8443" 
+               protocol="org.apache.coyote.http11.Http11AprProtocol"
+               maxThreads="200"
+               SSLEnabled="true"
+               >
+      <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+      <SSLHostConfig>
+        <Certificate certificateKeyFile="/path/to/private.key"
+                     certificateFile="/path/to/certificate.crt"
+                     certificateChainFile="/path/to/chain.crt"
+                     type="RSA" />
+      </SSLHostConfig>
+    </Connector>
+    -->
+
+    <!-- ========== Engine Configuration ========== -->
+    <Engine name="Catalina" defaultHost="localhost">
+
+      <Realm className="org.apache.catalina.realm.LockOutRealm">
+        <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+               resourceName="UserDatabase"/>
+      </Realm>
+
+      <!-- ========== Host Configuration ========== -->
+      <Host name="localhost" 
+            appBase="webapps"
+            unpackWARs="true" 
+            autoDeploy="false"
+            deployOnStartup="false">
+
+        <!--
+          ========== Access Logging ==========
+          
+          Disable in production for better performance
+          Enable when troubleshooting
+        -->
+        <!--
+        <Valve className="org.apache.catalina.valves.AccessLogValve" 
+               directory="logs"
+               prefix="localhost_access_log" 
+               suffix=".txt"
+               pattern="%h %l %u %t &quot;%r&quot; %s %b %D" 
+               />
+        -->
+
+        <!--
+          ========== Static Resource Caching ==========
+          
+          Cache static files (CSS, JS, images) in browser
+          Significantly reduces load times
+        -->
+        <Context>
+          <Resources cachingAllowed="true" 
+                     cacheMaxSize="102400"
+                     cacheTtl="3600000" />
+        </Context>
+
+      </Host>
+    </Engine>
+  </Service>
+</Server>
+
+<!--
+  ============================================================================
+  Additional Configuration Files
+  ============================================================================
+  
+  1. catalina.properties
+     - Configure shared class loaders
+     - Set security manager policies
+  
+  2. setenv.sh (or setenv.bat on Windows)
+     - JVM memory and GC settings (see jvm-tuning.sh)
+  
+  3. web.xml (in $CATALINA_HOME/conf/)
+     - Default session timeout
+     - MIME type mappings
+     - Welcome file lists
+  
+  ============================================================================
+  Performance Testing Checklist
+  ============================================================================
+  
+  1. Baseline Performance:
+     - Record current response times
+     - Note resource utilization (CPU, memory, threads)
+  
+  2. Apply Changes:
+     - Implement one category at a time
+     - Restart Tomcat after changes
+  
+  3. Load Testing:
+     - Use Apache JMeter or similar
+     - Simulate realistic user load
+     - Monitor metrics during test
+  
+  4. Monitor:
+     - Check Tomcat Manager (/manager/status)
+     - Review catalina.out for errors
+     - Monitor database connections
+  
+  5. Iterate:
+     - Adjust maxThreads based on CPU cores
+     - Tune maxConnections based on memory
+     - Balance ORDS pool vs Tomcat threads
+  
+  ============================================================================
+  Recommended Monitoring
+  ============================================================================
+  
+  1. Thread Pool:
+     curl http://localhost:8080/manager/status/all
+     
+  2. Memory Usage:
+     jstat -gc <pid> 1000
+     
+  3. Connection Metrics:
+     netstat -an | grep :8080 | wc -l
+     
+  4. Response Times:
+     Enable AccessLog and parse with tools like AWStats
+  
+  ============================================================================
+-->

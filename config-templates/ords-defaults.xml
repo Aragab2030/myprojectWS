@@ -1,0 +1,173 @@
+<!--
+  ============================================================================
+  ORDS Configuration - Optimized for Performance
+  ============================================================================
+  File: defaults.xml or pool.xml
+  Location: <ORDS_CONFIG>/databases/default/
+  
+  CRITICAL: Adjust values based on your environment:
+  - Available memory
+  - Expected concurrent users
+  - Database resources
+  - Network latency
+  ============================================================================
+-->
+
+<properties>
+    <!-- ========== Database Connection Pool Settings ========== -->
+    
+    <!-- Initial number of connections when ORDS starts -->
+    <entry key="jdbc.InitialLimit">10</entry>
+    
+    <!-- Minimum number of connections to maintain in the pool -->
+    <entry key="jdbc.MinLimit">10</entry>
+    
+    <!-- Maximum number of connections in the pool
+         Recommendation: 
+         - Small deployment (1-50 users): 25-50
+         - Medium deployment (50-200 users): 50-100
+         - Large deployment (200+ users): 100-200
+         - Monitor and adjust based on actual usage
+    -->
+    <entry key="jdbc.MaxLimit">100</entry>
+    
+    <!-- Maximum number of connection requests that can wait
+         Should be >= MaxLimit -->
+    <entry key="jdbc.MaxConnectionReuseCount">5000</entry>
+    
+    <!-- Time in seconds a connection can remain idle before being closed
+         Lower values free up connections faster but increase overhead -->
+    <entry key="jdbc.InactivityTimeout">300</entry>
+    
+    <!-- Time in seconds before a connection attempt times out -->
+    <entry key="jdbc.ConnectionTimeout">30</entry>
+    
+    <!-- Validate connections before use (prevents stale connections) -->
+    <entry key="jdbc.ConnectionValidation">true</entry>
+    
+    <!-- SQL query to validate connections (fast query) -->
+    <entry key="jdbc.ValidationQuery">SELECT 1 FROM DUAL</entry>
+    
+    
+    <!-- ========== Statement Caching ========== -->
+    
+    <!-- Enable statement caching for prepared statements
+         Significantly improves performance for repeated queries -->
+    <entry key="jdbc.StatementCaching">true</entry>
+    
+    <!-- Number of statements to cache per connection
+         Higher = better performance but more memory -->
+    <entry key="jdbc.StatementCacheSize">50</entry>
+    
+    
+    <!-- ========== Request Handling ========== -->
+    
+    <!-- Maximum size of HTTP request body in bytes (10MB default)
+         Increase if handling large file uploads -->
+    <entry key="procedure.rest.preprocess.maxRequestBodySize">10485760</entry>
+    
+    <!-- Enable response compression for better network performance -->
+    <entry key="misc.compress">true</entry>
+    
+    <!-- Compression threshold in bytes (compress only if larger than this) -->
+    <entry key="misc.compress.threshold">1024</entry>
+    
+    <!-- Default page size for collection pagination -->
+    <entry key="misc.pagination.maxRows">10000</entry>
+    
+    
+    <!-- ========== Security Settings ========== -->
+    
+    <!-- Maximum number of concurrent requests per client IP
+         Helps prevent DoS attacks -->
+    <entry key="security.maxConcurrentRequests">50</entry>
+    
+    <!-- Request timeout in seconds -->
+    <entry key="security.requestTimeout">300</entry>
+    
+    
+    <!-- ========== Logging Configuration ========== -->
+    
+    <!-- Access log format (AccessLog for detailed, Off for none)
+         Recommendation: Use "AccessLog" initially, then "Off" in production
+         for better performance -->
+    <entry key="log.logging">AccessLog</entry>
+    
+    <!-- Maximum size of access log in MB before rotation -->
+    <entry key="log.maxFileSize">50</entry>
+    
+    <!-- Number of access log files to retain -->
+    <entry key="log.maxFileCount">10</entry>
+    
+    
+    <!-- ========== Performance Tuning ========== -->
+    
+    <!-- Enable result set caching (APEX specific)
+         Caches query results for improved performance -->
+    <entry key="cache.metadata.enabled">true</entry>
+    
+    <!-- Time in seconds to cache metadata -->
+    <entry key="cache.metadata.timeout">3600</entry>
+    
+    <!-- Enable connection pool metrics -->
+    <entry key="jdbc.pool.metrics.enabled">true</entry>
+    
+    
+    <!-- ========== APEX Specific Settings ========== -->
+    
+    <!-- Maximum allowed length for APEX page requests
+         Increase if you have large pages with many items -->
+    <entry key="apex.security.maxPostBodySize">20971520</entry>
+    
+    <!-- Session timeout in seconds (APEX sessions)
+         Should align with APEX application session timeout -->
+    <entry key="security.session.timeout">3600</entry>
+    
+    
+    <!-- ========== Advanced Settings (Use with caution) ========== -->
+    
+    <!-- Enable connection pooling statistics -->
+    <entry key="debug.printDebugToScreen">false</entry>
+    
+    <!-- Enable request tracing (heavy performance impact) -->
+    <entry key="debug.trackResources">false</entry>
+    
+</properties>
+
+<!--
+  ============================================================================
+  Monitoring and Tuning Tips
+  ============================================================================
+  
+  1. Monitor Connection Pool Usage:
+     - Check ORDS logs for "connection wait" messages
+     - If waiting frequently, increase jdbc.MaxLimit
+     - If many idle connections, decrease jdbc.MaxLimit
+  
+  2. Monitor Response Times:
+     - Enable AccessLog initially to gather metrics
+     - Use metrics to identify slow endpoints
+     - Disable AccessLog in production for better performance
+  
+  3. Statement Cache Tuning:
+     - Monitor cache hit ratio
+     - Increase StatementCacheSize if hit ratio is low
+     - Watch memory usage - each connection has its own cache
+  
+  4. Connection Validation:
+     - Keep enabled to prevent stale connection errors
+     - Uses minimal overhead with fast validation query
+  
+  5. Compression:
+     - Keep enabled for network efficiency
+     - Adjust threshold based on typical response size
+     - Most beneficial for slow network connections
+  
+  6. Testing Changes:
+     - Test each change under load
+     - Monitor database sessions: SELECT * FROM V$SESSION WHERE program LIKE '%ORDS%'
+     - Check connection pool metrics in ORDS logs
+     - Use load testing tools (JMeter, LoadRunner)
+  
+  ============================================================================
+-->
