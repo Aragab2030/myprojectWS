@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="maroonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#8B1538;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#6B0F2A;stop-opacity:1" />
+        </linearGradient>
+        
+        <linearGradient id="logoGoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#F4D03F;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:1" />
+        </linearGradient>
+        
+        <filter id="shadow">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+        </filter>
+    </defs>
+    
+    <!-- Main Circle Background -->
+    <circle cx="100" cy="100" r="95" fill="white" filter="url(#shadow)"/>
+    
+    <!-- Outer decorative circles -->
+    <circle cx="100" cy="100" r="85" fill="none" stroke="url(#maroonGradient)" stroke-width="2" opacity="0.3"/>
+    <circle cx="100" cy="100" r="75" fill="none" stroke="url(#logoGoldGradient)" stroke-width="1.5" opacity="0.5"/>
+    
+    <!-- Central Qatar-inspired geometric star -->
+    <g transform="translate(100, 100)">
+        <!-- 8-pointed star -->
+        <path d="M 0,-60 L 15,-20 L 42.4,-42.4 L 20,-15 L 60,0 L 20,15 L 42.4,42.4 L 15,20 L 0,60 L -15,20 L -42.4,42.4 L -20,15 L -60,0 L -20,-15 L -42.4,-42.4 L -15,-20 Z" 
+              fill="url(#maroonGradient)"
+              filter="url(#shadow)"/>
+        
+        <!-- Inner decorative circle -->
+        <circle cx="0" cy="0" r="35" fill="url(#logoGoldGradient)"/>
+        
+        <!-- Central ornament -->
+        <circle cx="0" cy="0" r="20" fill="white"/>
+        <circle cx="0" cy="0" r="15" fill="url(#maroonGradient)"/>
+        
+        <!-- Small decorative dots around center -->
+        <g fill="white">
+            <circle cx="0" cy="-10" r="2"/>
+            <circle cx="7" cy="-7" r="2"/>
+            <circle cx="10" cy="0" r="2"/>
+            <circle cx="7" cy="7" r="2"/>
+            <circle cx="0" cy="10" r="2"/>
+            <circle cx="-7" cy="7" r="2"/>
+            <circle cx="-10" cy="0" r="2"/>
+            <circle cx="-7" cy="-7" r="2"/>
+        </g>
+    </g>
+    
+    <!-- Corner ornaments -->
+    <g opacity="0.6">
+        <!-- Top -->
+        <path d="M 100,5 L 105,15 L 95,15 Z" fill="url(#logoGoldGradient)"/>
+        <!-- Right -->
+        <path d="M 195,100 L 185,105 L 185,95 Z" fill="url(#logoGoldGradient)"/>
+        <!-- Bottom -->
+        <path d="M 100,195 L 95,185 L 105,185 Z" fill="url(#logoGoldGradient)"/>
+        <!-- Left -->
+        <path d="M 5,100 L 15,95 L 15,105 Z" fill="url(#logoGoldGradient)"/>
+    </g>
+    
+    <!-- Arabic-inspired decorative elements -->
+    <g opacity="0.4" stroke="url(#logoGoldGradient)" stroke-width="1.5" fill="none">
+        <path d="M 50,30 Q 60,25 70,30 T 90,30"/>
+        <path d="M 110,30 Q 120,25 130,30 T 150,30"/>
+        <path d="M 50,170 Q 60,165 70,170 T 90,170"/>
+        <path d="M 110,170 Q 120,165 130,170 T 150,170"/>
+    </g>
+</svg>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Qatar Branded Oracle APEX Login Page - Demo">
+    <meta name="author" content="Qatar Digital Services">
+    <title>Qatar APEX Login - Demo</title>
+    
+    <!-- Qatar Branding CSS -->
+    <link rel="stylesheet" href="qatar-apex-login.css">
+    
+    <!-- Google Fonts for Arabic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon (Optional) -->
+    <link rel="icon" type="image/svg+xml" href="qatar-logo.svg">
+    
+    <style>
+        /* Demo-specific styles */
+        .demo-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #D4AF37 0%, #F4D03F 100%);
+            color: #2C2C2C;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .demo-banner a {
+            color: #8B1538;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+        
+        body.apex-login-page {
+            padding-top: 60px;
+        }
+        
+        .demo-info {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-size: 13px;
+            max-width: 300px;
+            z-index: 100;
+        }
+        
+        .demo-info h4 {
+            margin: 0 0 10px 0;
+            color: #8B1538;
+            font-size: 14px;
+        }
+        
+        .demo-info ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .demo-info li {
+            margin: 5px 0;
+            color: #666;
+        }
+        
+        .demo-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #8B1538;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(139, 21, 56, 0.3);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-toggle:hover {
+            background: #6B0F2A;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(139, 21, 56, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .demo-info {
+                display: none;
+            }
+            
+            .demo-banner {
+                font-size: 12px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="apex-login-page">
+    
+    <!-- Demo Banner -->
+    <div class="demo-banner">
+        🎨 Qatar Branded APEX Login - Demo Version
+        <a href="APEX_INTEGRATION_GUIDE.md" target="_blank">View Integration Guide</a>
+    </div>
+    
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <button class="language-toggle" onclick="toggleLanguage()">
+            <span id="current-lang">EN</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Main Login Container -->
+    <div class="apex-login-container">
+        
+        <!-- Left Panel: Qatar Branding -->
+        <div class="apex-login-branding">
+            <div class="qatar-logo-container">
+                <!-- Qatar Emblem/Logo -->
+                <div class="qatar-emblem">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Qatar-inspired geometric pattern -->
+                        <circle cx="50" cy="50" r="40" fill="#8B1538" opacity="0.1"/>
+                        <circle cx="50" cy="50" r="30" fill="#8B1538" opacity="0.2"/>
+                        <path d="M50 20 L65 35 L80 30 L70 50 L80 70 L65 65 L50 80 L35 65 L20 70 L30 50 L20 30 L35 35 Z" 
+                              fill="#8B1538"/>
+                        <circle cx="50" cy="50" r="15" fill="#D4AF37"/>
+                        <text x="50" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="white">QA</text>
+                    </svg>
+                </div>
+                
+                <h1 class="branding-title">Oracle APEX Portal</h1>
+                <p class="branding-title-ar">بوابة أوراكل أبكس</p>
+            </div>
+            
+            <div class="branding-decorative-line"></div>
+            
+            <div>
+                <p class="branding-subtitle">
+                    Secure access to enterprise applications and digital services.
+                    Built with excellence for Qatar's digital transformation.
+                </p>
+            </div>
+            
+            <div class="branding-features">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <span class="feature-text">Secure Authentication</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <span class="feature-text">24/7 Availability</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <span class="feature-text">Enterprise Grade</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Panel: Login Form -->
+        <div class="apex-login-form-panel">
+            
+            <!-- Login Header -->
+            <div class="login-header">
+                <h2 class="login-title">Welcome Back</h2>
+                <p class="login-subtitle">Enter your credentials to access your account</p>
+            </div>
+            
+            <!-- Alert Message Container -->
+            <div id="alert-container"></div>
+            
+            <!-- Login Form -->
+            <form class="apex-login-form" id="login-form" onsubmit="handleLogin(event)">
+                
+                <!-- Username Field -->
+                <div class="form-group">
+                    <label for="username" class="form-label required">Username</label>
+                    <div class="form-input-wrapper">
+                        <svg class="form-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="p_username"
+                            class="form-input" 
+                            placeholder="Enter your username"
+                            required
+                            autocomplete="username"
+                            aria-label="Username"
+                        >
+                    </div>
+                    <span class="error-message" id="username-error" style="display: none;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12" stroke="white" stroke-width="2"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16" stroke="white" stroke-width="2"/>
+                        </svg>
+                        <span id="username-error-text"></span>
+                    </span>
+                </div>
+                
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password" class="form-label required">Password</label>
+                    <div class="form-input-wrapper">
+                        <svg class="form-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="p_password"
+                            class="form-input" 
+                            placeholder="Enter your password"
+                            required
+                            autocomplete="current-password"
+                            aria-label="Password"
+                        >
+                        <button type="button" class="password-toggle" onclick="togglePassword()" aria-label="Toggle password visibility">
+                            <svg id="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="error-message" id="password-error" style="display: none;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12" stroke="white" stroke-width="2"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16" stroke="white" stroke-width="2"/>
+                        </svg>
+                        <span id="password-error-text"></span>
+                    </span>
+                </div>
+                
+                <!-- Form Options -->
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" class="custom-checkbox" id="remember" name="p_remember">
+                        <span class="remember-label">Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password" onclick="handleForgotPassword(event)">Forgot Password?</a>
+                </div>
+                
+                <!-- Login Button -->
+                <button type="submit" class="btn-login" id="login-button">
+                    <span id="login-button-text">Sign In</span>
+                </button>
+                
+            </form>
+            
+            <!-- Footer Links -->
+            <div class="login-footer">
+                <div class="footer-links">
+                    <a href="#privacy" class="footer-link" onclick="alert('Privacy Policy page'); return false;">Privacy Policy</a>
+                    <a href="#terms" class="footer-link" onclick="alert('Terms of Service page'); return false;">Terms of Service</a>
+                    <a href="#support" class="footer-link" onclick="alert('Support page'); return false;">Support</a>
+                </div>
+                <p class="footer-text">
+                    &copy; 2025 State of Qatar. All rights reserved.
+                </p>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- Demo Information Box -->
+    <div class="demo-info" id="demoInfo">
+        <h4>📝 Demo Credentials</h4>
+        <ul>
+            <li><strong>Username:</strong> demo</li>
+            <li><strong>Password:</strong> password123</li>
+        </ul>
+        <p style="margin-top: 10px; font-size: 12px; color: #999;">
+            This is a demo. Any credentials will work for testing.
+        </p>
+    </div>
+    
+    <!-- Toggle Demo Info Button -->
+    <button class="demo-toggle" onclick="toggleDemoInfo()">
+        💡 Demo Info
+    </button>
+    
+    <!-- JavaScript -->
+    <script src="qatar-apex-login.js"></script>
+    
+    <!-- Demo-specific JavaScript -->
+    <script>
+        // Toggle demo info visibility
+        function toggleDemoInfo() {
+            const demoInfo = document.getElementById('demoInfo');
+            if (demoInfo.style.display === 'none') {
+                demoInfo.style.display = 'block';
+            } else {
+                demoInfo.style.display = 'none';
+            }
+        }
+        
+        // Show demo welcome message on load
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                showAlert('info', 'Demo Mode: You can use any credentials to test the login page. Try the language toggle (EN/AR) button!');
+            }, 1000);
+        });
+        
+        // Log demo mode to console
+        console.log('%c🎨 Qatar APEX Login Demo', 'background: #8B1538; color: white; padding: 10px 20px; font-size: 16px; font-weight: bold;');
+        console.log('%cThis is a demonstration version.', 'font-size: 14px; color: #666;');
+        console.log('%cFor production use, please refer to APEX_INTEGRATION_GUIDE.md', 'font-size: 14px; color: #666;');
+        console.log('%c\nFeatures:', 'font-size: 14px; font-weight: bold; color: #8B1538; margin-top: 10px;');
+        console.log('✓ Qatar national branding (Maroon #8B1538, Gold #D4AF37)');
+        console.log('✓ Bilingual support (English/Arabic with RTL)');
+        console.log('✓ Responsive design (mobile, tablet, desktop)');
+        console.log('✓ Form validation and error handling');
+        console.log('✓ Account lockout protection (5 attempts)');
+        console.log('✓ Password visibility toggle');
+        console.log('✓ Remember me functionality');
+        console.log('✓ Accessibility (WCAG 2.1 AA)');
+        console.log('✓ Smooth animations and transitions');
+    </script>
+</body>
+</html>
