@@ -1,0 +1,35 @@
+---
+# ====== Page: Global Page ===================================
+id: 0
+identification: 
+  name: Global Page
+
+dynamic-actions: 
+- # ====== Dynamic Action: ODA Integration =====================
+  id: 9859814323060139
+  identification: 
+    name: ODA Integration
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+
+  when: 
+    event: Page Load
+
+  actions: 
+  - # ====== Action: Call Javascript Function ====================
+    id: 9859993656060140
+    identification: 
+      name: Call Javascript Function
+      action: Execute JavaScript Code
+
+    settings: 
+      code: initSdk('Bots')
+
+    execution: 
+      sequence: 10
+      event: ODA Integration # 9859814323060139
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+

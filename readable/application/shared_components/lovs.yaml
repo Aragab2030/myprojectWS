@@ -1,0 +1,67 @@
+---
+- # ====== List of Values: LOV GENDER ==========================
+  id: 9933473130663607
+  identification: 
+    name: LOV GENDER
+
+  subscription: 
+    version-number: 38929823340200
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Male =========================================
+    id: 9933742912663603
+    entry: 
+      sequence: 1
+      display: Male
+      return: M
+
+  - # ====== Entry: Female =======================================
+    id: 9934197953663602
+    entry: 
+      sequence: 2
+      display: Female
+      return: F
+
+- # ====== List of Values: LOV NATIONALITY =====================
+  id: 9934453478656903
+  identification: 
+    name: LOV NATIONALITY
+
+  subscription: 
+    version-number: 38929823372145
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Qatar ========================================
+    id: 9934751144656903
+    entry: 
+      sequence: 1
+      display: Qatar
+      return: QA
+
+  - # ====== Entry: Egypt ========================================
+    id: 9935103947656903
+    entry: 
+      sequence: 2
+      display: Egypt
+      return: EG
+
+  - # ====== Entry: India ========================================
+    id: 9935592579656903
+    entry: 
+      sequence: 3
+      display: India
+      return: IN
+
+  - # ====== Entry: Jordan =======================================
+    id: 9935925576656903
+    entry: 
+      sequence: 4
+      display: Jordan
+      return: JO
+

@@ -1,0 +1,13 @@
+---
+- # ====== REST Data Source Server: oicconnectm-axpnesiqlw1a-je-
+  id: 9664822597580242
+  identification: 
+    name: oicconnectm-axpnesiqlw1a-je-integration-me-jeddah-1-ocp-oraclecloud-com-ic-api
+
+  endpoint-url: 
+    url: 'https://oicconnectm-axpnesiqlw1a-je.integration.me-jeddah-1.ocp.oraclecloud.com/ic/api/'
+
+  advanced: 
+    static-id: oicconnectm_axpnesiqlw1a_je_integration_me_jeddah_1_ocp_oraclecloud_com_ic_api
+    prompt-on-install: false
+

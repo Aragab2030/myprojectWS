@@ -1,0 +1,434 @@
+---
+- # ====== REST Data Source: OIC Get Person Info by ID =========
+  id: 9675853530552052
+  identification: 
+    name: OIC Get Person Info by ID
+
+  subscription: 
+    version-number: 38929777086068
+
+  source: 
+    type: HTTP
+    remote-server: oicconnectm-axpnesiqlw1a-je-integration-me-jeddah-1-ocp-oraclecloud-com-ic-api # 9664822597580242
+    url-path-prefix: integration/v1/flows/rest/DEMO_SELECT_RECORDS_ATP/1.0/select
+
+  settings: 
+    pagination-type: NO PAGINATION
+
+  authentication: 
+    credentials: Credentials for OIC Get Person Info by ID # 9670581204552056
+
+  rest-synchronization: 
+    job-is-active: false
+    local-table-owner: Parsing Schema
+
+  advanced: 
+    static-id: oic_get_person_info_by_id
+    pass-ecid: Application Default
+
+  parameters: 
+  - # ====== Parameter: PRS_ID ===================================
+    id: 9676491078552051
+    identification: 
+      name: PRS_ID
+
+    parameter: 
+      type: URL Query String
+      data-type: Numeric
+
+    value: 
+      direction: In
+      static: false
+      value: 1
+      required: false
+
+    advanced: 
+      use-for-row-search: true
+      omit-when-value-is-empty: false
+
+  data-profiles: 
+    id: 9670849050552054
+    identification: 
+      name: OIC Get Person Info by ID
+
+    data-profile: 
+      format: JSON
+      row-selector: '"HR.PERSON_INFO"'
+      contains-single-row: false
+      use-raw-selectors: false
+
+    advanced: 
+      encoding: Database Character Set
+
+    columns: 
+    - # ====== Column: GENDER ======================================
+      id: 9671032738552054
+      identification: 
+        column-name: GENDER
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 32767
+        primary-key: false
+
+      parsing: 
+        path-expression: GENDER
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 1
+        hidden: false
+
+    - # ====== Column: PRS_ID ======================================
+      id: 9671312333552054
+      identification: 
+        column-name: PRS_ID
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: PRS_ID
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 2
+        hidden: false
+
+    - # ====== Column: ID_COPY =====================================
+      id: 9671630786552054
+      identification: 
+        column-name: ID_COPY
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 32767
+        primary-key: false
+
+      parsing: 
+        path-expression: ID_COPY
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 3
+        hidden: false
+
+    - # ====== Column: BIRTH_DATE ==================================
+      id: 9671988219552053
+      identification: 
+        column-name: BIRTH_DATE
+
+      source: 
+        type: Data
+        data-type: TIMESTAMP WITH TIME ZONE
+        primary-key: false
+
+      parsing: 
+        path-expression: BIRTH_DATE
+        format-mask: 'YYYY"-"MM"-"DD"T"HH24":"MI:SS.FF9TZH":"TZM'
+        has-time-zone: true
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 4
+        hidden: false
+
+    - # ====== Column: CREATED_BY ==================================
+      id: 9672299516552053
+      identification: 
+        column-name: CREATED_BY
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 32767
+        primary-key: false
+
+      parsing: 
+        path-expression: CREATED_BY
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 5
+        hidden: false
+
+    - # ====== Column: QID_NUMBER ==================================
+      id: 9672593533552053
+      identification: 
+        column-name: QID_NUMBER
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: QID_NUMBER
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 6
+        hidden: false
+
+    - # ====== Column: UPDATED_BY ==================================
+      id: 9672800358552053
+      identification: 
+        column-name: UPDATED_BY
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 32767
+        primary-key: false
+
+      parsing: 
+        path-expression: UPDATED_BY
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 7
+        hidden: false
+
+    - # ====== Column: NATIONALITY =================================
+      id: 9673171229552053
+      identification: 
+        column-name: NATIONALITY
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 32767
+        primary-key: false
+
+      parsing: 
+        path-expression: NATIONALITY
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 8
+        hidden: false
+
+    - # ====== Column: CREATED_DATE ================================
+      id: 9673413656552053
+      identification: 
+        column-name: CREATED_DATE
+
+      source: 
+        type: Data
+        data-type: TIMESTAMP WITH TIME ZONE
+        primary-key: false
+
+      parsing: 
+        path-expression: CREATED_DATE
+        format-mask: 'YYYY"-"MM"-"DD"T"HH24":"MI:SS.FF9TZH":"TZM'
+        has-time-zone: true
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 9
+        hidden: false
+
+    - # ====== Column: FULL_NAME_AR ================================
+      id: 9673749396552053
+      identification: 
+        column-name: FULL_NAME_AR
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 32767
+        primary-key: false
+
+      parsing: 
+        path-expression: FULL_NAME_AR
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 10
+        hidden: false
+
+    - # ====== Column: FULL_NAME_EN ================================
+      id: 9674052119552053
+      identification: 
+        column-name: FULL_NAME_EN
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 32767
+        primary-key: false
+
+      parsing: 
+        path-expression: FULL_NAME_EN
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 11
+        hidden: false
+
+    - # ====== Column: UPDATED_DATE ================================
+      id: 9674396507552052
+      identification: 
+        column-name: UPDATED_DATE
+
+      source: 
+        type: Data
+        data-type: TIMESTAMP WITH TIME ZONE
+        primary-key: false
+
+      parsing: 
+        path-expression: UPDATED_DATE
+        format-mask: 'YYYY"-"MM"-"DD"T"HH24":"MI:SS.FF9TZH":"TZM'
+        has-time-zone: true
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 12
+        hidden: false
+
+    - # ====== Column: EMAIL_ADDRESS ===============================
+      id: 9674661682552052
+      identification: 
+        column-name: EMAIL_ADDRESS
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 32767
+        primary-key: false
+
+      parsing: 
+        path-expression: EMAIL_ADDRESS
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 13
+        hidden: false
+
+    - # ====== Column: MOBILE_NUMBER ===============================
+      id: 9674994490552052
+      identification: 
+        column-name: MOBILE_NUMBER
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: MOBILE_NUMBER
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 14
+        hidden: false
+
+    - # ====== Column: ID_EXPIRY_DATE ==============================
+      id: 9675249845552052
+      identification: 
+        column-name: ID_EXPIRY_DATE
+
+      source: 
+        type: Data
+        data-type: TIMESTAMP WITH TIME ZONE
+        primary-key: false
+
+      parsing: 
+        path-expression: ID_EXPIRY_DATE
+        format-mask: 'YYYY"-"MM"-"DD"T"HH24":"MI:SS.FF9TZH":"TZM'
+        has-time-zone: true
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 15
+        hidden: false
+
+    - # ====== Column: PASSPORT_NUMBER =============================
+      id: 9675503747552052
+      identification: 
+        column-name: PASSPORT_NUMBER
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 32767
+        primary-key: false
+
+      parsing: 
+        path-expression: PASSPORT_NUMBER
+
+      remote-rest-data-source-server: 
+        filterable: true
+        is-common: true
+
+      advanced: 
+        sequence: 16
+        hidden: false
+
+  operations: 
+  - # ====== Operation: GET ======================================
+    id: 9676059289552051
+    label: 
+      label: GET
+
+    operation: 
+      url-pattern: .
+      http-method: GET
+      database-operation: Fetch Rows
+
+    remote-cache: 
+      caching: Disabled
+
+    advanced: 
+      allow-fetching-all-rows: false
+      force-raise-http-404-error: false
+

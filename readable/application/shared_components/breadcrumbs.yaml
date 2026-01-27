@@ -1,0 +1,72 @@
+---
+- # ====== Breadcrumb: Breadcrumb ==============================
+  id: 8173164710581169
+  identification: 
+    name: Breadcrumb
+
+  entries: 
+  - # ====== Entry: Home =========================================
+    id: 8173316295581168
+    identification: 
+      name: Home
+      page-number: 1
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:1:&APP_SESSION.::&DEBUG.:::'
+        page: 1 # Home
+
+  - # ====== Entry: OIC Integration ==============================
+    id: 8477448523573666
+    identification: 
+      name: OIC Integration
+      page-number: 2
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Home # 8173316295581168
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:2:&SESSION.::&DEBUG.:::'
+        page: 2 # OIC Integration
+
+  - # ====== Entry: ODA ==========================================
+    id: 8479062017569520
+    identification: 
+      name: ODA
+      page-number: 3
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Home # 8173316295581168
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:3:&APP_SESSION.::&DEBUG.:::'
+        page: 3 # ODA
+
+  - # ====== Entry: OAC Dashboard ================================
+    id: 8480378835561265
+    identification: 
+      name: OAC Dashboard
+      page-number: 4
+
+    execution: 
+      sequence: 10
+
+    appearance: 
+      parent-entry: Home # 8173316295581168
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:4:&SESSION.::&DEBUG.:::'
+        page: 4 # OAC Dashboard
+

@@ -1,0 +1,264 @@
+---
+# ====== Page: OAC Dashboard =================================
+id: 4
+identification: 
+  name: OAC Dashboard
+  alias: OAC-DASHBOARD
+  title: OAC Dashboard
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+javascript: 
+  file-urls: 
+  - ' [require jet]'
+  - ' https://mannaioacdemo2-axpnesiqlw1a-je.analytics.ocp.oraclecloud.com/public/dv/v1/embedding/jet/embedding.js?IDCS_OAUTH3LEGGED=true'
+  - null
+  - '-- https://mannaioacdemo2-axpnesiqlw1a-je.analytics.ocp.oraclecloud.com/public/dv/v1/embedding/standalone/embedding.js?IDCS_OAUTH3LEGGED=true'
+  execute-when-page-loads: |
+    requirejs(['knockout', 'ojs/ojcore', 'ojs/ojknockout', 'ojs/ojcomposite', 'jet-composites/oracle-dv/loader'],function(ko) { 
+     	 ko.applyBindings(); 
+     	 }); 
+
+css: 
+  inline: |
+    .t-BreadcrumbRegion {
+        padding: 0.5% 0.5% 0.5% 0.5% !important;
+    }
+    
+    @media (min-width: 640px) {
+        .t-Body-title:not(.t-Body-title-shrink) .t-BreadcrumbRegion--useBreadcrumbTitle:not(.t-BreadcrumbRegion--compactTitle) .t-Breadcrumb-item:last-child, .t-BreadcrumbRegion-titleText {
+            flex-basis: unset;
+            font-family: var(--ut-breadcrumb-title-font-family);
+            font-size: small;
+            font-weight: var(--ut-breadcrumb-title-font-weight, var(--a-base-font-weight-semibold, 500));
+            line-height: unset;
+            margin: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    
+    ul[class*="t-Tabs t-Tabs--simple t-Tabs--large a-Tabs"]{
+        overflow: unset !important;
+    }
+    .a-Tabs-selected {
+         background-color: var(--oc-colors-main-tabBg, var(--oc-colors-main-panelPrimaryBg, #fcfcfc));
+        border-left: 1px solid var(--oc-colors-main-tabBorder, var(--oc-colors-primaryGrays-50, #aeaeae));
+        border-right: 1px solid var(--oc-colors-main-tabBorder, var(--oc-colors-primaryGrays-50, #aeaeae));
+        border-top: 1px solid var(--oc-colors-main-tabBorder, var(--oc-colors-primaryGrays-50, #aeaeae));
+        border-bottom: 2px solid var(--oc-colors-main-tabBg, var(--oc-colors-main-panelPrimaryBg, #fcfcfc));
+        position: relative;
+        bottom: -2px;
+    }
+    
+    .t-Tabs-link:before{
+        content: none;
+    }
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Breadcrumb ==================================
+  id: 8479811516561266
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 8173164710581169
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Employees Dashboard =========================
+  id: 9859109318060132
+  identification: 
+    name: Employees Dashboard
+    type: Static Content
+
+  source: 
+    html-code: |
+      <div style="width:100%; height:700px" >
+      <oracle-dv project-path="/@Catalog/shared/HR/Reports/OAC_APEX_Integration" active-page="canvas" active-tab-id="1">
+      </oracle-dv>
+      </div>
+      
+      
+      
+      
+      <!-- <iframe src="https://mannaioacdemo2-axpnesiqlw1a-je.analytics.ocp.oraclecloud.com/ui/dv/project.jsp?pageid=visualAnalyzer&reportpath=%2F%40Catalog%2Fshared%2FHR%2FReports%2FPersons_Report&viewermode=true&noheader=true" width="100%" height="800px" > </iframe> -->
+      
+
+  layout: 
+    sequence: 10
+    parent-region: New # 9859651426060137
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: New =========================================
+  id: 9859651426060137
+  identification: 
+    name: New
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: 2
+    new-column: true
+    column-span: 10
+
+  appearance: 
+    template: Tabs Container
+    template-options: 
+    - '#DEFAULT#'
+    - js-useLocalStorage
+    - t-TabsRegion-mod--simple
+    - t-TabsRegion-mod--large
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Person Information Dashboard ================
+  id: 9859730966060138
+  identification: 
+    name: Person Information Dashboard
+    type: Static Content
+
+  source: 
+    html-code: |
+      <iframe src="https://mannaioacdemo2-axpnesiqlw1a-je.analytics.ocp.oraclecloud.com/ui/dv/project.jsp?pageid=visualAnalyzer&reportpath=%2F%40Catalog%2Fshared%2FHR%2FReports%2FPersons_Report&viewermode=true&noheader=true" width="100%" height="800px" > </iframe>
+      
+
+  layout: 
+    sequence: 20
+    parent-region: New # 9859651426060137
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+

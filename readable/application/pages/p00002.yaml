@@ -1,0 +1,3002 @@
+---
+# ====== Page: OIC Integration ===============================
+id: 2
+identification: 
+  name: OIC Integration
+  alias: OIC-INTEGRATION
+  title: OIC Integration
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: false
+
+css: 
+  inline: |
+    .t-BreadcrumbRegion {
+        padding: 0.5% 0.5% 0.5% 0.5% !important;
+    }
+    
+    @media (min-width: 640px) {
+        .t-Body-title:not(.t-Body-title-shrink) .t-BreadcrumbRegion--useBreadcrumbTitle:not(.t-BreadcrumbRegion--compactTitle) .t-Breadcrumb-item:last-child, .t-BreadcrumbRegion-titleText {
+            flex-basis: unset;
+            font-family: var(--ut-breadcrumb-title-font-family);
+            font-size: small;
+            font-weight: var(--ut-breadcrumb-title-font-weight, var(--a-base-font-weight-semibold, 500));
+            line-height: unset;
+            margin: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+    
+    .b-search{
+        position: relative;
+        bottom: -13%;
+        height: 47px;
+    }
+    
+    .b-add, .b-cancel{
+         position: relative;
+         height: 47px;
+    }
+    
+    ul[class*="t-Tabs t-Tabs--simple t-Tabs--large a-Tabs"]{
+        overflow: unset !important;
+    }
+    .a-Tabs-selected{
+         background-color: var(--oc-colors-main-tabBg, var(--oc-colors-main-panelPrimaryBg, #fcfcfc));
+        border-left: 1px solid var(--oc-colors-main-tabBorder, var(--oc-colors-primaryGrays-50, #aeaeae));
+        border-right: 1px solid var(--oc-colors-main-tabBorder, var(--oc-colors-primaryGrays-50, #aeaeae));
+        border-top: 1px solid var(--oc-colors-main-tabBorder, var(--oc-colors-primaryGrays-50, #aeaeae));
+        border-bottom: 2px solid var(--oc-colors-main-tabBg, var(--oc-colors-main-panelPrimaryBg, #fcfcfc));
+        position: relative;
+        bottom: -2px;
+    }
+    
+    .t-Tabs-link:before{
+        content: none;
+    }
+    
+    .f-insert-form{
+        padding: 0% 2% 2% 2%;
+    }
+    
+    
+    
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Breadcrumb ==================================
+  id: 8476920140573669
+  identification: 
+    name: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 8173164710581169
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Add Person Information  =====================
+  id: 8563628368024003
+  identification: 
+    name: 'Add Person Information '
+    type: Form
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: PERSON_INFO
+    include-rowid-column: false
+
+  layout: 
+    sequence: 10
+    parent-region: Parent Tab Region # 9687790694535833
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - f-insert-form
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    static-id: f-person-info
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    edit: 
+      enabled: false
+
+- # ====== Region: Person Information Report ===================
+  id: 9610541810024909
+  identification: 
+    name: Person Information Report
+    type: Interactive Report
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select PRS_ID,
+             QID_NUMBER,
+             ID_EXPIRY_DATE,
+             PASSPORT_NUMBER,
+             BIRTH_DATE,
+             GENDER,
+             FULL_NAME_AR,
+             FULL_NAME_EN,
+             NATIONALITY,
+             MOBILE_NUMBER,
+             EMAIL_ADDRESS,
+             dbms_lob.getlength(ID_COPY) ID_COPY,
+             MIME_TYPE,
+             file_name,
+             CREATED_BY,
+             CREATED_DATE,
+             UPDATED_BY,
+             UPDATED_DATE
+        from PERSON_INFO
+        ORDER BY PRS_ID ASC
+
+  layout: 
+    sequence: 30
+    parent-region: Parent Tab Region # 9687790694535833
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Interactive Report
+    template-options: 
+    - '#DEFAULT#'
+    - js-showMaximizeButton
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 9610692838024910
+    link: 
+      link-column: Exclude Link Column
+
+    pagination: 
+      type: Row Ranges X to Y
+      display-position: Bottom - Right
+
+    performance: 
+      lazy-loading: false
+      maximum-rows-to-process: 1000000
+
+    search-bar: 
+      include-search-bar: true
+      search-field: true
+      finder-drop-down: true
+      reports-select-list: true
+      rows-per-page-selector: false
+
+    actions-menu: 
+      include-actions-menu: true
+      filter: true
+      select-columns: true
+      rows-per-page: true
+      sort: true
+      control-break: true
+      highlight: true
+      compute: true
+      aggregate: true
+      chart: true
+      group-by: true
+      pivot: true
+      flashback: true
+      save-report: true
+      save-public-report: false
+      reset: true
+      help: true
+      download: true
+      subscription: true
+
+    download: 
+      formats: 
+      - CSV
+      - HTML
+      - Excel
+      - PDF
+      send-as-email: true
+
+    heading: 
+      fixed-to: Page
+
+    icon-view: 
+      show: false
+
+    detail-view: 
+      show: false
+
+    saved-reports: 
+    - # ====== Saved Report: Primary Report ========================
+      id: 9649530304004638
+      identification: 
+        name: Primary Report
+        alias: 96496
+
+    columns: 
+    - # ====== Column: PRS_ID ======================================
+      id: 9857196668060112
+      identification: 
+        column-name: PRS_ID
+        type: Plain Text
+
+      heading: 
+        heading: Prs Id
+        alignment: end
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 10
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: QID_NUMBER ==================================
+      id: 9857237588060113
+      identification: 
+        column-name: QID_NUMBER
+        type: Plain Text
+
+      heading: 
+        heading: Qid Number
+        alignment: end
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 20
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ID_EXPIRY_DATE ==============================
+      id: 9857331680060114
+      identification: 
+        column-name: ID_EXPIRY_DATE
+        type: Plain Text
+
+      heading: 
+        heading: Id Expiry Date
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 30
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+        date-ranges: All
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: PASSPORT_NUMBER =============================
+      id: 9857423782060115
+      identification: 
+        column-name: PASSPORT_NUMBER
+        type: Plain Text
+
+      heading: 
+        heading: Passport Number
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 40
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: BIRTH_DATE ==================================
+      id: 9857596515060116
+      identification: 
+        column-name: BIRTH_DATE
+        type: Plain Text
+
+      heading: 
+        heading: Birth Date
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 50
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+        date-ranges: All
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: GENDER ======================================
+      id: 9857636518060117
+      identification: 
+        column-name: GENDER
+        type: Plain Text (based on List of Values)
+
+      list-of-values: 
+        list-of-values: LOV GENDER # 9933473130663607
+
+      heading: 
+        heading: Gender
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 60
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Use Named List of Values to Filter Exact Match
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+    - # ====== Column: FULL_NAME_AR ================================
+      id: 9857721675060118
+      identification: 
+        column-name: FULL_NAME_AR
+        type: Plain Text
+
+      heading: 
+        heading: Full Name Ar
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 80
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: FULL_NAME_EN ================================
+      id: 9857842583060119
+      identification: 
+        column-name: FULL_NAME_EN
+        type: Plain Text
+
+      heading: 
+        heading: Full Name En
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 90
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: NATIONALITY =================================
+      id: 9857921127060120
+      identification: 
+        column-name: NATIONALITY
+        type: Plain Text (based on List of Values)
+
+      list-of-values: 
+        list-of-values: LOV NATIONALITY # 9934453478656903
+
+      heading: 
+        heading: Nationality
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 70
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Use Named List of Values to Filter Exact Match
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+    - # ====== Column: MOBILE_NUMBER ===============================
+      id: 9858065342060121
+      identification: 
+        column-name: MOBILE_NUMBER
+        type: Plain Text
+
+      heading: 
+        heading: Mobile Number
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 110
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: EMAIL_ADDRESS ===============================
+      id: 9858146660060122
+      identification: 
+        column-name: EMAIL_ADDRESS
+        type: Plain Text
+
+      heading: 
+        heading: Email Address
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 120
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ID_COPY =====================================
+      id: 9858252409060123
+      identification: 
+        column-name: ID_COPY
+        type: Download BLOB
+
+      heading: 
+        heading: Id Copy
+        alignment: end
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 130
+        column-alignment: center
+
+      accessibility: 
+        value-identifies-row: false
+
+      appearance: 
+        view-file-as: Attachment
+        download-text: <span class="fa fa-download" aria-hidden="true"></span>
+
+      blob-attributes: 
+        table-owner: Parsing Schema
+        table-name: PERSON_INFO
+        blob-column: ID_COPY
+        primary-key-column-1: PRS_ID
+        mime-type-column: MIME_TYPE
+        filename-column: FILE_NAME
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+    - # ====== Column: MIME_TYPE ===================================
+      id: 9858320179060124
+      identification: 
+        column-name: MIME_TYPE
+        type: Plain Text
+
+      heading: 
+        heading: Mime Type
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 140
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: FILE_NAME ===================================
+      id: 9858447144060125
+      identification: 
+        column-name: FILE_NAME
+        type: Plain Text
+
+      heading: 
+        heading: File Name
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 150
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: CREATED_BY ==================================
+      id: 9858515573060126
+      identification: 
+        column-name: CREATED_BY
+        type: Hidden
+
+      heading: 
+        heading: Created By
+
+      layout: 
+        sequence: 160
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: CREATED_DATE ================================
+      id: 9858640474060127
+      identification: 
+        column-name: CREATED_DATE
+        type: Hidden
+
+      heading: 
+        heading: Created Date
+
+      layout: 
+        sequence: 170
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: UPDATED_BY ==================================
+      id: 9858756726060128
+      identification: 
+        column-name: UPDATED_BY
+        type: Hidden
+
+      heading: 
+        heading: Updated By
+
+      layout: 
+        sequence: 180
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: UPDATED_DATE ================================
+      id: 9858820403060129
+      identification: 
+        column-name: UPDATED_DATE
+        type: Hidden
+
+      heading: 
+        heading: Updated Date
+
+      layout: 
+        sequence: 190
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    printing: 
+      output: 
+        layout: Default Report Layout
+        view-file-as: Attachment
+
+      page: 
+        size: Letter
+        orientation: Landscape
+        units: Inches
+        width: 11
+        height: 8.5
+        border-width: 0.5
+        border-color: '#666666'
+
+      page-header: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 12
+        font-color: '#000000'
+        alignment: center
+
+      column-headings: 
+        font: Helvetica
+        font-weight: Bold
+        font-size: 10
+        font-color: '#000000'
+        background-color: '#EEEEEE'
+
+      columns: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 10
+        font-color: '#000000'
+        background-color: '#FFFFFF'
+
+      page-footer: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 12
+        font-color: '#000000'
+        alignment: center
+
+- # ====== Region: Person Info From OIC ========================
+  id: 9612572061024929
+  identification: 
+    name: Person Info From OIC
+    type: Interactive Report
+
+  source: 
+    location: REST Source
+    rest-source: OIC Get Person Info by ID # 9675853530552052
+
+  layout: 
+    sequence: 20
+    parent-region: Search By Person ID # 9684635464535802
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Interactive Report
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P2_PERSON_ID
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 9612681066024930
+    link: 
+      link-column: Exclude Link Column
+
+    pagination: 
+      type: Row Ranges X to Y
+      display-position: Bottom - Right
+
+    performance: 
+      lazy-loading: false
+      maximum-rows-to-process: 1000000
+
+    search-bar: 
+      include-search-bar: true
+      search-field: true
+      finder-drop-down: true
+      reports-select-list: true
+      rows-per-page-selector: false
+
+    actions-menu: 
+      include-actions-menu: true
+      filter: true
+      select-columns: true
+      rows-per-page: true
+      sort: true
+      control-break: true
+      highlight: true
+      compute: true
+      aggregate: true
+      chart: true
+      group-by: true
+      pivot: true
+      flashback: true
+      save-report: true
+      save-public-report: false
+      reset: true
+      help: true
+      download: true
+      subscription: true
+
+    download: 
+      formats: 
+      - CSV
+      - HTML
+      - Excel
+      - PDF
+      send-as-email: true
+
+    heading: 
+      fixed-to: Page
+
+    icon-view: 
+      show: false
+
+    detail-view: 
+      show: false
+
+    saved-reports: 
+    - # ====== Saved Report: Primary Report ========================
+      id: 9683776026541271
+      identification: 
+        name: Primary Report
+        alias: 96838
+
+    columns: 
+    - # ====== Column: GENDER ======================================
+      id: 9612789332024931
+      identification: 
+        column-name: GENDER
+        type: Plain Text
+
+      heading: 
+        heading: Gender
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 70
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: PRS_ID ======================================
+      id: 9612896050024932
+      identification: 
+        column-name: PRS_ID
+        type: Hidden
+
+      heading: 
+        heading: Prs Id
+
+      layout: 
+        sequence: 10
+
+      source: 
+        primary-key: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ID_COPY =====================================
+      id: 9612913122024933
+      identification: 
+        column-name: ID_COPY
+        type: Hidden
+
+      heading: 
+        heading: Id Copy
+
+      layout: 
+        sequence: 120
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: BIRTH_DATE ==================================
+      id: 9613049259024934
+      identification: 
+        column-name: BIRTH_DATE
+        type: Plain Text
+
+      heading: 
+        heading: Birth Date
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 80
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+        date-ranges: All
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: CREATED_BY ==================================
+      id: 9613193931024935
+      identification: 
+        column-name: CREATED_BY
+        type: Hidden
+
+      heading: 
+        heading: Created By
+
+      layout: 
+        sequence: 130
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: QID_NUMBER ==================================
+      id: 9613253645024936
+      identification: 
+        column-name: QID_NUMBER
+        type: Plain Text
+
+      heading: 
+        heading: Qid Number
+        alignment: end
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 40
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: UPDATED_BY ==================================
+      id: 9613305626024937
+      identification: 
+        column-name: UPDATED_BY
+        type: Hidden
+
+      heading: 
+        heading: Updated By
+
+      layout: 
+        sequence: 140
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: NATIONALITY =================================
+      id: 9613424662024938
+      identification: 
+        column-name: NATIONALITY
+        type: Plain Text
+
+      heading: 
+        heading: Nationality
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 90
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: CREATED_DATE ================================
+      id: 9613575300024939
+      identification: 
+        column-name: CREATED_DATE
+        type: Hidden
+
+      heading: 
+        heading: Created Date
+
+      layout: 
+        sequence: 150
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: FULL_NAME_AR ================================
+      id: 9613606445024940
+      identification: 
+        column-name: FULL_NAME_AR
+        type: Plain Text
+
+      heading: 
+        heading: Full Name Ar
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 20
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: FULL_NAME_EN ================================
+      id: 9613747400024941
+      identification: 
+        column-name: FULL_NAME_EN
+        type: Plain Text
+
+      heading: 
+        heading: Full Name En
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 30
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: UPDATED_DATE ================================
+      id: 9613824136024942
+      identification: 
+        column-name: UPDATED_DATE
+        type: Hidden
+
+      heading: 
+        heading: Updated Date
+
+      layout: 
+        sequence: 160
+
+      source: 
+        primary-key: false
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: EMAIL_ADDRESS ===============================
+      id: 9613976680024943
+      identification: 
+        column-name: EMAIL_ADDRESS
+        type: Plain Text
+
+      heading: 
+        heading: Email Address
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 100
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: MOBILE_NUMBER ===============================
+      id: 9614025621024944
+      identification: 
+        column-name: MOBILE_NUMBER
+        type: Plain Text
+
+      heading: 
+        heading: Mobile Number
+        alignment: end
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 110
+        column-alignment: end
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: ID_EXPIRY_DATE ==============================
+      id: 9614176786024945
+      identification: 
+        column-name: ID_EXPIRY_DATE
+        type: Plain Text
+
+      heading: 
+        heading: Id Expiry Date
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 50
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+        date-ranges: All
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    - # ====== Column: PASSPORT_NUMBER =============================
+      id: 9614201474024946
+      identification: 
+        column-name: PASSPORT_NUMBER
+        type: Plain Text
+
+      heading: 
+        heading: Passport Number
+        alignment: start
+
+      single-row-view: 
+        use-column-heading: true
+
+      layout: 
+        sequence: 60
+        column-alignment: start
+
+      accessibility: 
+        value-identifies-row: false
+
+      source: 
+        primary-key: false
+
+      column-filter: 
+        type: Default Based on Column Type
+
+      enable-users-to: 
+        hide: true
+        sort: true
+        filter: true
+        highlight: true
+        control-break: true
+        aggregate: true
+        compute: true
+        chart: true
+        group-by: true
+        pivot: true
+
+      security: 
+        escape-special-characters: true
+
+    printing: 
+      output: 
+        layout: Default Report Layout
+        view-file-as: Attachment
+
+      page: 
+        size: Letter
+        orientation: Landscape
+        units: Inches
+        width: 11
+        height: 8.5
+        border-width: 0.5
+        border-color: '#666666'
+
+      page-header: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 12
+        font-color: '#000000'
+        alignment: center
+
+      column-headings: 
+        font: Helvetica
+        font-weight: Bold
+        font-size: 10
+        font-color: '#000000'
+        background-color: '#EEEEEE'
+
+      columns: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 10
+        font-color: '#000000'
+        background-color: '#FFFFFF'
+
+      page-footer: 
+        font: Helvetica
+        font-weight: Normal
+        font-size: 12
+        font-color: '#000000'
+        alignment: center
+
+  parameters: 
+  - # ====== Parameter: PRS_ID ===================================
+    id: 9614332131024947
+    identification: 
+      name: PRS_ID # 9676491078552051
+
+    operation: 
+      http-method: All
+      database-operation: All
+
+    parameter: 
+      direction: In
+      data-type: Numeric
+
+    value: 
+      type: Item
+      item: P2_PERSON_ID
+
+- # ====== Region: Search By Person ID =========================
+  id: 9684635464535802
+  identification: 
+    name: Search By Person ID
+    type: Static Content
+
+  layout: 
+    sequence: 20
+    parent-region: Parent Tab Region # 9687790694535833
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Parent Tab Region ===========================
+  id: 9687790694535833
+  identification: 
+    name: Parent Tab Region
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: 2
+    new-column: true
+    column-span: 10
+
+  appearance: 
+    template: Tabs Container
+    template-options: 
+    - '#DEFAULT#'
+    - js-useLocalStorage
+    - t-TabsRegion-mod--simple
+    - t-TabsRegion-mod--large
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Sparator ====================================
+  id: 9688875221535844
+  identification: 
+    name: Sparator
+    type: Static Content
+
+  source: 
+    html-code: <br> <hr> <br>
+
+  layout: 
+    sequence: 10
+    parent-region: 'Add Person Information ' # 8563628368024003
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Buttons =====================================
+  id: 9689037212535846
+  identification: 
+    name: Buttons
+    type: Static Content
+
+  layout: 
+    sequence: 20
+    parent-region: Sparator # 9688875221535844
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P2_PRS_ID ================================
+  id: 8563801867024005
+  identification: 
+    name: P2_PRS_ID
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 10
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: PRS_ID
+    data-type: NUMBER
+    query-only: false
+    primary-key: true
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Checksum Required - Session Level
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_QID_NUMBER ============================
+  id: 8563970304024006
+  identification: 
+    name: P2_QID_NUMBER
+    type: Number Field
+
+  label: 
+    label: Qid Number
+    alignment: Left
+
+  settings: 
+    number-alignment: Start
+    virtual-keyboard: Decimal
+
+  layout: 
+    sequence: 40
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: true
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: QID_NUMBER
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_ID_EXPIRY_DATE ========================
+  id: 8564073149024007
+  identification: 
+    name: P2_ID_EXPIRY_DATE
+    type: Date Picker
+
+  label: 
+    label: Id Expiry Date
+    alignment: Left
+
+  settings: 
+    show-time: false
+    display-as: Popup
+    minimum-date: None
+    maximum-date: None
+    multiple-months: No
+    use-defaults: true
+
+  layout: 
+    sequence: 50
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    format-mask: DD/MM/YYYY
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: ID_EXPIRY_DATE
+    data-type: DATE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_PASSPORT_NUMBER =======================
+  id: 8564164855024008
+  identification: 
+    name: P2_PASSPORT_NUMBER
+    type: Text Field
+
+  label: 
+    label: Passport Number
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 60
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+    maximum-length: 20
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: PASSPORT_NUMBER
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_BIRTH_DATE ============================
+  id: 8564264302024009
+  identification: 
+    name: P2_BIRTH_DATE
+    type: Date Picker
+
+  label: 
+    label: Birth Date
+    alignment: Left
+
+  settings: 
+    show-time: false
+    display-as: Popup
+    minimum-date: None
+    maximum-date: None
+    multiple-months: No
+    use-defaults: true
+
+  layout: 
+    sequence: 70
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    format-mask: DD/MM/YYYY
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: BIRTH_DATE
+    data-type: DATE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_GENDER ================================
+  id: 8564323073024010
+  identification: 
+    name: P2_GENDER
+    type: Select List
+
+  label: 
+    label: Gender
+    alignment: Left
+
+  settings: 
+    page-action-on-selection: None
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 80
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    height: 1
+
+  validation: 
+    value-required: true
+
+  list-of-values: 
+    type: Shared Component
+    list-of-values: LOV GENDER # 9933473130663607
+    display-extra-values: false
+    display-null-value: true
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: GENDER
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_FULL_NAME_AR ==========================
+  id: 8564427819024011
+  identification: 
+    name: P2_FULL_NAME_AR
+    type: Text Field
+
+  label: 
+    label: Full Name Ar
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 20
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: true
+    maximum-length: 200
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: FULL_NAME_AR
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_FULL_NAME_EN ==========================
+  id: 8564541036024012
+  identification: 
+    name: P2_FULL_NAME_EN
+    type: Text Field
+
+  label: 
+    label: Full Name En
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 30
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: true
+    maximum-length: 200
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: FULL_NAME_EN
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_NATIONALITY ===========================
+  id: 8564642553024013
+  identification: 
+    name: P2_NATIONALITY
+    type: Select List
+
+  label: 
+    label: Nationality
+    alignment: Left
+
+  settings: 
+    page-action-on-selection: None
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 100
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    height: 1
+
+  validation: 
+    value-required: true
+
+  list-of-values: 
+    type: Shared Component
+    list-of-values: LOV NATIONALITY # 9934453478656903
+    display-extra-values: false
+    display-null-value: true
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: NATIONALITY
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_MOBILE_NUMBER =========================
+  id: 8564749245024014
+  identification: 
+    name: P2_MOBILE_NUMBER
+    type: Text Field
+
+  label: 
+    label: Mobile Number
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 110
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+    maximum-length: 15
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: MOBILE_NUMBER
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_EMAIL_ADDRESS =========================
+  id: 8564865693024015
+  identification: 
+    name: P2_EMAIL_ADDRESS
+    type: Text Field
+
+  label: 
+    label: Email Address
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 120
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+    maximum-length: 50
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: EMAIL_ADDRESS
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_ID_COPY ===============================
+  id: 8564989182024016
+  identification: 
+    name: P2_ID_COPY
+    type: File Upload
+
+  label: 
+    label: Id Copy
+    alignment: Left
+
+  display: 
+    display-as: Inline Dropzone
+    dropzone-title: QID Copy
+    dropzone-description: 'Attach QID '
+    capture-using: NONE
+
+  storage:: 
+    type: Table APEX_APPLICATION_TEMP_FILES
+    purge-file-at: End of Session
+    allow-multiple-files: false
+
+  layout: 
+    sequence: 130
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: 6
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Required - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: true
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: ID_COPY
+    data-type: BLOB
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_CREATED_BY ============================
+  id: 8565069753024017
+  identification: 
+    name: P2_CREATED_BY
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 140
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: CREATED_BY
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_CREATED_DATE ==========================
+  id: 8565180538024018
+  identification: 
+    name: P2_CREATED_DATE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 150
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+
+  appearance: 
+    format-mask: DD/MM/YYYY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: CREATED_DATE
+    data-type: DATE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_UPDATED_BY ============================
+  id: 8565291975024019
+  identification: 
+    name: P2_UPDATED_BY
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 160
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: UPDATED_BY
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_UPDATED_DATE ==========================
+  id: 8565358735024020
+  identification: 
+    name: P2_UPDATED_DATE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 170
+    region: 'Add Person Information ' # 8563628368024003
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: 'Add Person Information ' # 8563628368024003
+    column: UPDATED_DATE
+    data-type: DATE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P2_PERSON_ID =============================
+  id: 9614451598024948
+  identification: 
+    name: P2_PERSON_ID
+    type: Text Field
+
+  label: 
+    label: Person Id
+    alignment: Left
+
+  settings: 
+    subtype: Text
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: true
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: Search By Person ID # 9684635464535802
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    width: 30
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: Add =========================================
+  id: 9612480424024928
+  identification: 
+    button-name: Add
+    label: Add
+
+  layout: 
+    sequence: 10
+    region: Buttons # 9689037212535846
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: 6
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text with Icon
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--large
+    - t-Button--iconLeft
+    - t-Button--hoverIconPush
+    css-classes: 
+    - b-add
+    icon: fa-plus-square
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: Search ======================================
+  id: 9614570292024949
+  identification: 
+    button-name: Search
+    label: Search
+
+  layout: 
+    sequence: 10
+    region: Search By Person ID # 9684635464535802
+    slot: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text with Icon
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--large
+    - t-Button--iconLeft
+    - t-Button--hoverIconPush
+    css-classes: 
+    - b-search
+    icon: fa-search
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: Cancel ======================================
+  id: 9688975345535845
+  identification: 
+    button-name: Cancel
+    label: Cancel
+
+  layout: 
+    sequence: 20
+    region: Buttons # 9689037212535846
+    slot: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: 7
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text with Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--small
+    - t-Button--iconLeft
+    - t-Button--gapLeft
+    - t-Button--gapRight
+    css-classes: 
+    - b-cancel
+    icon: fa-home
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:1:&SESSION.::&DEBUG.:::'
+      page: 1 # Home
+
+    warn-on-unsaved-changes: Do Not Check
+
+dynamic-actions: 
+- # ====== Dynamic Action: New =================================
+  id: 9688367624535839
+  identification: 
+    name: New
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: Search # 9614570292024949
+
+  actions: 
+  - # ====== Action: Execute Server-side Code ====================
+    id: 9688406692535840
+    identification: 
+      action: Execute Server-side Code
+
+    settings: 
+      language: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      pl/sql-code: null;
+      items-to-submit: 
+      - P2_PERSON_ID
+
+    execution: 
+      sequence: 10
+      event: New # 9688367624535839
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+  - # ====== Action: Refresh =====================================
+    id: 9688534301535841
+    identification: 
+      action: Refresh
+
+    settings: 
+      maintain-pagination: false
+
+    affected-elements: 
+      selection-type: Region
+      region: Person Info From OIC # 9612572061024929
+
+    execution: 
+      sequence: 20
+      event: New # 9688367624535839
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+processes: 
+- # ====== Process: Initialize form OIC Integration ============
+  id: 8563767260024004
+  identification: 
+    name: Initialize form OIC Integration
+    type: Form - Initialization
+    execution-chain: None
+    form-region: 'Add Person Information ' # 8563628368024003
+
+  execution: 
+    sequence: 10
+    point: Before Header
+    run-process: Once Per Page Visit (default)
+
+- # ====== Process: Insert Person Info =========================
+  id: 9687086313535826
+  identification: 
+    name: Insert Person Info
+    type: Execute Code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      /* Formatted on 27/10/2024 10:20:40 PM (QP5 v5.388) */
+      DECLARE
+          l_response       CLOB;
+          l_request_body   CLOB;
+           l_BLOB           BLOB;
+           l_base64    CLOB;
+      BEGIN
+          apex_web_service.g_request_headers (1).name := 'Content-type';
+          apex_web_service.g_request_headers (1).VALUE := 'application/json';
+      
+          SELECT BLOB_CONTENT
+          INTO  l_BLOB
+          FROM APEX_APPLICATION_TEMP_FILES
+          WHERE APPLICATION_ID = 101 AND name = :P2_ID_COPY;
+           
+           if l_BLOB is not null
+           then 
+              l_base64 := apex_web_service.blob2clobbase64(l_BLOB);
+              l_base64 := REPLACE(REPLACE(l_base64, CHR(13), ''), CHR(10), '');
+          end if;
+          l_request_body := '{
+              "HR.PERSON_INFO": [
+                  {
+                      "QID_NUMBER": "' || TO_NUMBER(:P2_QID_NUMBER)|| '",
+                      "ID_EXPIRY_DATE": "' || to_char(to_date(:P2_ID_EXPIRY_DATE, 'DD/MM/YYYY'), 'YYYY-MM-DD')  || '",
+                      "PASSPORT_NUMBER": "' || :P2_PASSPORT_NUMBER || '",
+                      "BIRTH_DATE": "' ||  to_char(to_date(:P2_BIRTH_DATE, 'DD/MM/YYYY'), 'YYYY-MM-DD') || '",
+                      "GENDER": "' || :P2_GENDER || '",
+                      "FULL_NAME_AR": "' || :P2_FULL_NAME_AR || '",
+                      "FULL_NAME_EN": "' || :P2_FULL_NAME_EN || '",
+                      "NATIONALITY": "' || :P2_NATIONALITY || '",
+                      "MOBILE_NUMBER": "' || :P2_MOBILE_NUMBER || '",
+                      "EMAIL_ADDRESS": "' || :P2_EMAIL_ADDRESS || '",
+                      "ID_COPY": "' || l_base64 || '"
+                     
+                  }
+              ]
+          }';
+      
+      
+          l_response :=
+              apex_web_service.make_rest_request (
+                  p_url           =>
+                      'https://oicconnectm-axpnesiqlw1a-je.integration.me-jeddah-1.ocp.oraclecloud.com/ic/api/integration/v1/flows/rest/DEMO_ATP_INSERT/1.0/insert',
+                  p_username      => 'krishna.munagala@mannai.com.qa',
+                  p_password      => 'Qatar@20242024',
+                  p_http_method   => 'POST',
+                  p_body          => l_request_body);
+      
+          apex_json.parse(l_response);
+          IF apex_json.get_varchar2 (p_path => 'message') = 'successfully Inserted'
+          THEN
+              APEX_APPLICATION.g_print_success_message :=
+                  'Data Inserted Successfully';
+          END IF;
+      END;
+
+  execution: 
+    sequence: 20
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+  server-side-condition: 
+    when-button-pressed: Add # 9612480424024928
+

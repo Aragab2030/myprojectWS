@@ -1,0 +1,213 @@
+---
+- # ====== List: Navigation Menu ===============================
+  id: 8173696361581166
+  identification: 
+    name: Navigation Menu
+
+  subscription: 
+    version-number: 38929822458771
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Home =========================================
+    id: 8473360155580802
+    label: 
+      label: Home
+
+    icon: 
+      image/icon-css-classes: fa-home
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:1:&APP_SESSION.::&DEBUG.:::'
+        page: 1 # Home
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: OIC Integration ==============================
+    id: 8476531495573671
+    label: 
+      label: OIC Integration
+
+    icon: 
+      image/icon-css-classes: fa-anchor
+
+    layout: 
+      sequence: 20
+      parent-entry: Home # 8473360155580802
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 2
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:2:&SESSION.::&DEBUG.:2:::'
+        page: 2 # OIC Integration
+        clear-cache: 2
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: ODA ==========================================
+    id: 8478158221569522
+    label: 
+      label: ODA
+
+    icon: 
+      image/icon-css-classes: fa-robot
+
+    layout: 
+      sequence: 30
+      parent-entry: Home # 8473360155580802
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 3
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:3:&APP_SESSION.::&DEBUG.:::'
+        page: 3 # ODA
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    security: 
+      authorization-scheme: '{Not Administration Rights}' # 8466400793580829
+
+  - # ====== Entry: OAC Dashboard ================================
+    id: 8479426493561266
+    label: 
+      label: OAC Dashboard
+
+    icon: 
+      image/icon-css-classes: fa-tachometer
+
+    layout: 
+      sequence: 40
+      parent-entry: Home # 8473360155580802
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 4
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:4:&APP_SESSION.::&DEBUG.:::'
+        page: 4 # OAC Dashboard
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+- # ====== List: Navigation Bar ================================
+  id: 8462857112580851
+  identification: 
+    name: Navigation Bar
+
+  subscription: 
+    version-number: 38929239270097
+
+  source: 
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: &APP_USER. ===================================
+    id: 8474816224580787
+    label: 
+      label: '&APP_USER.'
+
+    icon: 
+      image/icon-css-classes: fa-user
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: '#'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      2.: has-username
+
+  - # ====== Entry: --- ==========================================
+    id: 8475398224580786
+    label: 
+      label: '---'
+
+    layout: 
+      sequence: 20
+      parent-entry: '&APP_USER.' # 8474816224580787
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: separator
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: User is Authenticated (not public)
+
+  - # ====== Entry: Sign Out =====================================
+    id: 8475753848580786
+    label: 
+      label: Sign Out
+
+    icon: 
+      image/icon-css-classes: fa-sign-out
+
+    layout: 
+      sequence: 30
+      parent-entry: '&APP_USER.' # 8474816224580787
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: '&LOGOUT_URL.'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+    server-side-condition: 
+      type: User is Authenticated (not public)
+
